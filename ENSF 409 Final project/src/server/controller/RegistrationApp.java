@@ -1,4 +1,6 @@
-package server;
+package server.controller;
+
+import server.model.Student;
 
 public class RegistrationApp {
 	

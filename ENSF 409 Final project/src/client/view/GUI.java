@@ -1,4 +1,4 @@
-package client;
+package client.view;
 
 public class GUI {
 

@@ -1,5 +1,7 @@
-package server;
+package server.model;
 import java.util.ArrayList;
+
+import server.controller.Registration;
 
 public class Student {
 	
