@@ -12,12 +12,13 @@ public class DBManager {
 	ArrayList<Student> studentList; 
 
 	public DBManager () {
-		courseList = new ArrayList<Course>();
 	}
 
 	
 	
 	public ArrayList readStudentDataBase() {
+		
+		studentList = new ArrayList<Student>();
 		Scanner textFileInputs = null; 
 		
 		String firstName, lastName;
@@ -56,10 +57,38 @@ public class DBManager {
 	
 	
 	public ArrayList readFromDataBase() {
-		// TODO Auto-generated method stub
-		courseList.add(new Course ("ENGG", 233));
-		courseList.add(new Course ("ENSF", 409));
-		courseList.add(new Course ("PHYS", 259));
+		
+		courseList = new ArrayList<Course>();
+		
+		Scanner textFileInputs = null; 
+		
+		String className;
+		int classNum;
+		
+		//read from a basic dummy text file containing student names, numbers, etc. 
+		try {
+			textFileInputs = new Scanner(new File("CourseList.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		while(textFileInputs.hasNextLine()) {
+			
+			className = textFileInputs.next();
+			classNum = Integer.parseInt(textFileInputs.next());
+		
+			
+			Course c = new Course(className, classNum);
+			
+			courseList.add(c);
+			
+			
+		}
+		
+	
 		return courseList;
 	}
 

@@ -1,6 +1,7 @@
 package client.model;
 import java.util.ArrayList;
 
+import server.controller.Course;
 import server.controller.Registration;
 
 public class Student {
@@ -9,6 +10,9 @@ public class Student {
 	private int studentId;
 	//private ArrayList<CourseOffering> offeringList;
 	private ArrayList<Registration> studentRegList;
+	
+	
+	private ArrayList<Course> preReqs;
 	
 	public Student (String studentName, int studentId) {
 		this.setStudentName(studentName);
@@ -43,4 +47,11 @@ public class Student {
 		studentRegList.add(registration);
 	}
 
+	
+	public String viewRegisterdCourses() {
+		
+		return studentRegList.toString();
+		
+	}
+	
 }
