@@ -3,9 +3,11 @@ package client.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -18,6 +20,7 @@ import javax.swing.JTextField;
 public class LoginFrame extends GUI {
 
 	public LoginFrame() {
+		displayFrame();
 	}
 	
 	public void displayFrame() {
@@ -54,19 +57,47 @@ public class LoginFrame extends GUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				
+				socketOut.print(userID.getText());
+				
 				if(userID.getText().isEmpty() || Pattern.matches("[a-zA-Z]+", userID.getText()) || userID.getText().length() > 5){
 					JOptionPane.showMessageDialog(new JFrame(), "Incorrect input for Student ID. Please entera 5 digit ID");
-				}
-//				else(objectIn.readObject() == null){
-//					JOptionPane.showMessageDialog(new JFrame(), "Student with ID " + userID + " could not be found in our database. "
-//							+ "Please enter a different ID");
-//				}
+				} else
+					try {
+						if(objectIn.readObject() == null){
+							JOptionPane.showMessageDialog(new JFrame(), "Student with ID " + userID + " could not be found in our database. "
+									+ "Please enter a different ID");
+						}
+						else {
+							frame.dispose();
+						}
+					} catch (HeadlessException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				
 			}});
+		
+		cancelBut.addActionListener(new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+					frame.dispose();
+					
+			}});
+		
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public static void main(String [] args) {
+		
 		LoginFrame f = new LoginFrame();
 	}
 }

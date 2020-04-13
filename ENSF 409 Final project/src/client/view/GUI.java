@@ -8,11 +8,11 @@ import java.net.Socket;
 public class GUI {
 
 	
-	private PrintWriter socketOut;
-	private Socket aSocket;
-	private BufferedReader stdIn;
-	private BufferedReader socketIn;
-	private ObjectInputStream objectIn;
+	PrintWriter socketOut;
+	Socket aSocket;
+	BufferedReader stdIn;
+	BufferedReader socketIn;
+	ObjectInputStream objectIn;
 
 	public GUI(PrintWriter out, Socket socket, BufferedReader stdIn, BufferedReader In, ObjectInputStream objectIn) {
 		this.socketOut = out;
@@ -26,7 +26,7 @@ public class GUI {
 	}
 	
 	public GUI() {
-		MainFrame mainframe = new MainFrame();
+	//	MainFrame mainframe = new MainFrame();
 		
 	}
 	
