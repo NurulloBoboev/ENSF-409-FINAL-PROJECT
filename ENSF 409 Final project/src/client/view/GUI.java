@@ -1,10 +1,33 @@
 package client.view;
 
+import java.io.BufferedReader;
+import java.io.ObjectInputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+
 public class GUI {
 
-	public GUI() {
+	
+	private PrintWriter socketOut;
+	private Socket aSocket;
+	private BufferedReader stdIn;
+	private BufferedReader socketIn;
+	private ObjectInputStream objectIn;
+
+	public GUI(PrintWriter out, Socket socket, BufferedReader stdIn, BufferedReader In, ObjectInputStream objectIn) {
+		this.socketOut = out;
+		this.aSocket = socket;
+		this.stdIn = stdIn;
+		this.socketIn = In;
+		this.objectIn = objectIn;
+		
 		MainFrame mainframe = new MainFrame();
 		//other frames should be initialized inside the actionlisteners of other frame classes. 
+	}
+	
+	public GUI() {
+		MainFrame mainframe = new MainFrame();
+		
 	}
 	
 	

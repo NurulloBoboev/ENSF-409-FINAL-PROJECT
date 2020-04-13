@@ -3,6 +3,7 @@ package client.model;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -13,7 +14,7 @@ public class Client {
 	private Socket aSocket;
 	private BufferedReader stdIn;
 	private BufferedReader socketIn;
-	
+	private ObjectInputStream objectIn;
 	
 	public Client(String serverName, int portNum) {
 		
@@ -22,10 +23,12 @@ public class Client {
 			aSocket = new Socket(serverName, portNum);
 			stdIn = new BufferedReader(new InputStreamReader(System.in));
 			socketIn = new BufferedReader(new InputStreamReader(aSocket.getInputStream()));
-			socketOut = new PrintWriter(aSocket.getOutputStream(), true);	
+			socketOut = new PrintWriter(aSocket.getOutputStream(), true);
+			objectIn = new ObjectInputStream(aSocket.getInputStream());
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+		
 		
 		
 	}
