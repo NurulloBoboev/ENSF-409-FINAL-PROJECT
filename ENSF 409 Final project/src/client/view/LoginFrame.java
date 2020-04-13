@@ -95,9 +95,9 @@ public class LoginFrame extends GUI {
 		
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
-	public static void main(String [] args) {
-		
-		LoginFrame f = new LoginFrame();
-	}
+	//Uncomment to test LoginFrame on its own.
+//	public static void main(String [] args) {
+//		
+//		LoginFrame f = new LoginFrame();
+//	}
 }
