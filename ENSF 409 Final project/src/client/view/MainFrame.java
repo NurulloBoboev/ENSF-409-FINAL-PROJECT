@@ -2,6 +2,7 @@ package client.view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,7 +25,7 @@ public class MainFrame {
 		
 		JFrame mainFrame = new JFrame("Main Window");
 		mainFrame.setLayout(new BorderLayout());
-		mainFrame.setSize(600, 400);
+		mainFrame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/2, Toolkit.getDefaultToolkit().getScreenSize().height/2);
 		mainFrame.setLocationRelativeTo(null);
         
         mainFrame.add("North", new JLabel("What is the students name and ID number? ", SwingConstants.CENTER));
