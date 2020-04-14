@@ -16,7 +16,7 @@ public class DBManager {
 
 	
 	
-	public ArrayList readStudentDataBase() {
+	public ArrayList<Student> readStudentDataBase() {
 		
 		studentList = new ArrayList<Student>();
 		Scanner textFileInputs = null; 

@@ -1,6 +1,6 @@
 package server.controller;
 
-import server.model.Student;
+import server.controller.Student;
 
 public class Registration {
 	private Student theStudent;

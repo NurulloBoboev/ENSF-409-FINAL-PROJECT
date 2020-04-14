@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import server.controller.Student;
+
 public class GUI {
 
 	PrintWriter socketOut;

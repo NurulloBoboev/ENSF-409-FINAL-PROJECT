@@ -6,6 +6,7 @@ import server.controller.Course;
 import server.controller.CourseCatalogue;
 import server.controller.DBManager;
 import server.controller.Registration;
+import server.controller.Student;
 
 public class BackendServer {
 
