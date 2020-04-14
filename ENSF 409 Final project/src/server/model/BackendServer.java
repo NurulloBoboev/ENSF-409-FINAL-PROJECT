@@ -72,10 +72,25 @@ public class BackendServer {
 	}
 	
 	
+	public String viewAllTakenCourses() {
+		
+		return "empty for now - to be updated once we have a working database!";
+		
+	}
+	
+	
 	
 	
 	public Student getStudent() {
 		return student;
+	}
+	
+	
+	public void addCourseToStudentReg(String courseName, int secNum) {
+		
+		
+		
+		
 	}
 	
 	
