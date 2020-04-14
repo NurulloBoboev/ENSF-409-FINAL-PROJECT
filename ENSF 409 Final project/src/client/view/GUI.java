@@ -47,7 +47,8 @@ public class GUI {
 		
 		student = loginPortal.getStudent();
 		System.out.println("Name is: " + student.getStudentName());
-		
+		MenuFrame menu = new MenuFrame(getSocketOut(), aSocket, stdIn, socketIn, getObjectIn(), student);
+		menu.displayFrame();
 		if(aSocket.isClosed())
 			System.exit(0);
 		
