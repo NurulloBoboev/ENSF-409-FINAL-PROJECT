@@ -34,7 +34,7 @@ public class DBManager {
 		
 		
 		
-		while(textFileInputs.hasNextLine()) {
+		while(textFileInputs.hasNext()) {
 			
 			firstName = textFileInputs.next();
 			lastName = textFileInputs.next();
