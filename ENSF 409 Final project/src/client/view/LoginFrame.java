@@ -21,8 +21,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class LoginFrame extends GUI {
+import server.controller.Student;
 
+public class LoginFrame extends GUI {
+	
+	JFrame frame;
+	boolean tf = true;
 	public LoginFrame() {
 		displayFrame();
 	}
@@ -31,13 +35,12 @@ public class LoginFrame extends GUI {
 			ObjectInputStream objectIn) {
 		super(socketOut, aSocket, stdIn, socketIn, objectIn);
 		
-		displayFrame();
 		// TODO Auto-generated constructor stub
 	}
 
 	public void displayFrame() {
 		
-		JFrame frame = new JFrame("Login Portal");
+		frame = new JFrame("Login Portal");
 		frame.setLayout(new BorderLayout());
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/4,Toolkit.getDefaultToolkit().getScreenSize().height/6);
 		frame.setLocationRelativeTo(null);
@@ -73,25 +76,32 @@ public class LoginFrame extends GUI {
 				
 				socketOut.println(userID.getText());
 				
+				try {
+					student = (Student) objectIn.readObject();
+				} catch (ClassNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				
 				System.out.println("we didn't crash");
+				
 				if(userID.getText().isEmpty() || Pattern.matches("[a-zA-Z]+", userID.getText()) || userID.getText().length() > 5){
 					JOptionPane.showMessageDialog(new JFrame(), "Incorrect input for Student ID. Please entera 5 digit ID");
 				} else
 					try {
-						if(objectIn.readObject() == null){
+						if(student == null){
 							JOptionPane.showMessageDialog(new JFrame(), "Student with ID " + userID + " could not be found in our database. "
 									+ "Please enter a different ID");
 						}
 						else {
+							System.out.println(student.getStudentName());
+							tf = false;
 							frame.dispose();
 						}
 					} catch (HeadlessException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
@@ -108,6 +118,11 @@ public class LoginFrame extends GUI {
 			}});
 		
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public boolean getStatus() {
+		// TODO Auto-generated method stub
+		return tf;
 	}
 	
 	//Uncomment to test LoginFrame on its own.

@@ -1,6 +1,7 @@
 package client.view;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -14,7 +15,7 @@ public class GUI {
 	BufferedReader stdIn;
 	BufferedReader socketIn;
 	ObjectInputStream objectIn;
-
+	Student student;
 	public GUI(PrintWriter out, Socket socket, BufferedReader stdIn, BufferedReader In, ObjectInputStream objectIn) {
 		
 		this.socketOut = out;
@@ -31,9 +32,22 @@ public class GUI {
 		
 	}
 	
-	public void runGUI() {
+	public void runGUI() throws ClassNotFoundException, IOException {
 		LoginFrame loginPortal = new LoginFrame(socketOut, aSocket, stdIn, socketIn, objectIn);
+		loginPortal.displayFrame();
 		
+		while(true) {
+			if(loginPortal.getStatus()==false) {
+				System.out.println("We out here");
+				break;
+			}
+			System.out.print("");
+		}
+		
+		
+		student = loginPortal.getStudent();
+		System.out.println("Name is: " + student.getStudentName());
+
 	}
 	//comment the main method once done. Just using for testing purposes right now. 
 	
@@ -43,5 +57,8 @@ public class GUI {
 //		
 //	}
 	
+	public Student getStudent() {
+		return this.student;
+	}
 	
 }

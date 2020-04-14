@@ -37,7 +37,7 @@ public class Client {
 	
 	
 	
-	public void communicateServer() {
+	public void communicateServer() throws ClassNotFoundException, IOException {
 		
 		// Do socket work here to connect to the server and send info back and forth.
 		System.out.println("Communicate server got called");
@@ -49,7 +49,7 @@ public class Client {
 	
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		Client client = new Client("localhost", 1000);
 		client.communicateServer();
 
