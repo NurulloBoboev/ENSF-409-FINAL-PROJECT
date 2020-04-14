@@ -56,15 +56,29 @@ public class Server {
 			
 			
 			//first use of the Server - get an int from the client and then find and establish a student object. 
-			int studID = Integer.parseInt(socketIn.readLine());
+			while(true) {
+				System.out.println("waiting for input...");
+                int studID = Integer.parseInt(socketIn.readLine());
+            
+                System.out.println("Student ID received: " + studID);
+            
+                theBackend = new BackendServer(studID);
+                
+            //write the student object created in back end out to the client. 
+                Student st = theBackend.getStudent();
+                
+                if(st == null) {
+                	objectOut.writeObject(st);
+                	socketOut.flush();
+                    continue;
+                }
+                else
+                
+                objectOut.writeObject(st);
+                socketOut.flush();
+                break;
+            }
 			
-			System.out.println("Student ID received: " + studID);
-			
-			theBackend = new BackendServer(studID);
-			
-			//write the student object created in back end out to the client. 
-			objectOut.writeObject(theBackend.getStudent());
-			socketOut.flush();
 			do {
 				
 				

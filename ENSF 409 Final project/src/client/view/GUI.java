@@ -10,19 +10,19 @@ import server.controller.Student;
 
 public class GUI {
 
-	PrintWriter socketOut;
+	private PrintWriter socketOut;
 	Socket aSocket;
 	BufferedReader stdIn;
 	BufferedReader socketIn;
-	ObjectInputStream objectIn;
+	private ObjectInputStream objectIn;
 	Student student;
 	public GUI(PrintWriter out, Socket socket, BufferedReader stdIn, BufferedReader In, ObjectInputStream objectIn) {
 		
-		this.socketOut = out;
+		this.setSocketOut(out);
 		this.aSocket = socket;
 		this.stdIn = stdIn;
 		this.socketIn = In;
-		this.objectIn = objectIn;
+		this.setObjectIn(objectIn);
 		
 		
 		//other frames should be initialized inside the actionlisteners of other frame classes. 
@@ -33,7 +33,7 @@ public class GUI {
 	}
 	
 	public void runGUI() throws ClassNotFoundException, IOException {
-		LoginFrame loginPortal = new LoginFrame(socketOut, aSocket, stdIn, socketIn, objectIn);
+		LoginFrame loginPortal = new LoginFrame(getSocketOut(), aSocket, stdIn, socketIn, getObjectIn());
 		loginPortal.displayFrame();
 		
 		while(true) {
@@ -47,8 +47,14 @@ public class GUI {
 		
 		student = loginPortal.getStudent();
 		System.out.println("Name is: " + student.getStudentName());
+		
+		if(aSocket.isClosed())
+			System.exit(0);
+		
+		//MainFrame mainMenu = new MainFrame()
 
 	}
+	
 	//comment the main method once done. Just using for testing purposes right now. 
 	
 //	public static void main(String[] args) {
@@ -59,6 +65,22 @@ public class GUI {
 	
 	public Student getStudent() {
 		return this.student;
+	}
+
+	public PrintWriter getSocketOut() {
+		return socketOut;
+	}
+
+	public void setSocketOut(PrintWriter socketOut) {
+		this.socketOut = socketOut;
+	}
+
+	public ObjectInputStream getObjectIn() {
+		return objectIn;
+	}
+
+	public void setObjectIn(ObjectInputStream objectIn) {
+		this.objectIn = objectIn;
 	}
 	
 }

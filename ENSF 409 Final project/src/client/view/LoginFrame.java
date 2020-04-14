@@ -21,12 +21,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import client.controller.LoginFrameController;
 import server.controller.Student;
 
 public class LoginFrame extends GUI {
 	
 	JFrame frame;
-	boolean tf = true;
+	private boolean tf = true;
 	public LoginFrame() {
 		displayFrame();
 	}
@@ -36,6 +37,19 @@ public class LoginFrame extends GUI {
 		super(socketOut, aSocket, stdIn, socketIn, objectIn);
 		
 		// TODO Auto-generated constructor stub
+	}
+	
+	private JButton loginBut = new JButton("Login");
+	private JButton cancelBut = new JButton("Cancel");
+	private JTextField userID = new JTextField("Student ID");
+
+	
+	public JTextField getUserID() {
+		return userID;
+	}
+
+	public void setUserID(JTextField userID) {
+		this.userID = userID;
 	}
 
 	public void displayFrame() {
@@ -49,7 +63,6 @@ public class LoginFrame extends GUI {
 		
 		//textfield input
 		JPanel textfield = new JPanel(new FlowLayout());
-		JTextField userID = new JTextField("Student ID");
 		userID.setPreferredSize(new Dimension(400,20));
 		textfield.add(new JLabel("Student ID: "));
 		textfield.add(userID);
@@ -57,8 +70,7 @@ public class LoginFrame extends GUI {
 		frame.add("West", textfield);
 		
 		//confirmation buttons
-		JButton loginBut = new JButton("Login");
-		JButton cancelBut = new JButton("Cancel");
+
 		
 		JPanel buttons = new JPanel(new FlowLayout());
 		
@@ -68,61 +80,49 @@ public class LoginFrame extends GUI {
 		frame.add("South", buttons);
 		frame.setVisible(true);
 		
-		loginBut.addActionListener(new ActionListener () {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("did we crash?");
-				
-				socketOut.println(userID.getText());
-				
-				try {
-					student = (Student) objectIn.readObject();
-				} catch (ClassNotFoundException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				} catch (IOException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-				
-				System.out.println("we didn't crash");
-				
-				if(userID.getText().isEmpty() || Pattern.matches("[a-zA-Z]+", userID.getText()) || userID.getText().length() > 5){
-					JOptionPane.showMessageDialog(new JFrame(), "Incorrect input for Student ID. Please entera 5 digit ID");
-				} else
-					try {
-						if(student == null){
-							JOptionPane.showMessageDialog(new JFrame(), "Student with ID " + userID + " could not be found in our database. "
-									+ "Please enter a different ID");
-						}
-						else {
-							System.out.println(student.getStudentName());
-							tf = false;
-							frame.dispose();
-						}
-					} catch (HeadlessException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				
-			}});
-		
-		cancelBut.addActionListener(new ActionListener () {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-					frame.dispose();
-					
-			}});
+		LoginFrameController controller = new LoginFrameController(this);
+		controller.runController();
 		
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	public JButton getLoginBut() {
+		return loginBut;
+	}
+
+	public void setLoginBut(JButton loginBut) {
+		this.loginBut = loginBut;
+	}
+
+	public JButton getCancelBut() {
+		return cancelBut;
+	}
+
+	public void setCancelBut(JButton cancelBut) {
+		this.cancelBut = cancelBut;
+	}
+
 	public boolean getStatus() {
 		// TODO Auto-generated method stub
+		return isTf();
+	}
+
+	public void setStudent(Student student) {
+		// TODO Auto-generated method stub
+		this.student = student;
+	}
+
+	public void dispose() {
+		// TODO Auto-generated method stub
+		frame.dispose();
+	}
+
+	public boolean isTf() {
 		return tf;
+	}
+
+	public void setTf(boolean tf) {
+		this.tf = tf;
 	}
 	
 	//Uncomment to test LoginFrame on its own.
