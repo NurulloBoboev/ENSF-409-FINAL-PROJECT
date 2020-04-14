@@ -24,7 +24,7 @@ public class Server {
 	private BufferedReader socketIn; 
 	private PrintWriter socketOut;
 	private ObjectOutputStream objectOut;
-	private ObjectInputStream objectIn;
+//	private ObjectInputStream objectIn;
 	
 	BackendServer theBackend;
 	
@@ -45,18 +45,21 @@ public class Server {
 		try 
 		{
 			aSocket = serverSocket.accept();
+			System.out.println("Connection accepted by server");
 			socketIn = new BufferedReader(new InputStreamReader(aSocket.getInputStream()));
 			socketOut = new PrintWriter(aSocket.getOutputStream());
 		
 			
 			objectOut = new ObjectOutputStream(aSocket.getOutputStream());
-			objectIn = new ObjectInputStream(aSocket.getInputStream());
+			//objectIn = new ObjectInputStream(aSocket.getInputStream());
 			
 			
 			
 			//first use of the Server - get an int from the client and then find and establish a student object. 
 			int studID = Integer.parseInt(socketIn.readLine());
-
+			
+			System.out.println("Student ID received: " + studID);
+			
 			theBackend = new BackendServer(studID);
 			
 			//write the student object created in back end out to the client. 

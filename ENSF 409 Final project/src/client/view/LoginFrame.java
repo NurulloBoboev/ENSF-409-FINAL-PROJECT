@@ -69,9 +69,11 @@ public class LoginFrame extends GUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				System.out.println("did we crash?");
 				
-				socketOut.print(userID.getText());
+				socketOut.println(userID.getText());
 				
+				System.out.println("we didn't crash");
 				if(userID.getText().isEmpty() || Pattern.matches("[a-zA-Z]+", userID.getText()) || userID.getText().length() > 5){
 					JOptionPane.showMessageDialog(new JFrame(), "Incorrect input for Student ID. Please entera 5 digit ID");
 				} else
