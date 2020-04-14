@@ -7,7 +7,11 @@ import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -23,6 +27,14 @@ public class LoginFrame extends GUI {
 		displayFrame();
 	}
 	
+	public LoginFrame(PrintWriter socketOut, Socket aSocket, BufferedReader stdIn, BufferedReader socketIn,
+			ObjectInputStream objectIn) {
+		super(socketOut, aSocket, stdIn, socketIn, objectIn);
+		
+		displayFrame();
+		// TODO Auto-generated constructor stub
+	}
+
 	public void displayFrame() {
 		
 		JFrame frame = new JFrame("Login Portal");
@@ -95,6 +107,7 @@ public class LoginFrame extends GUI {
 		
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
 	//Uncomment to test LoginFrame on its own.
 //	public static void main(String [] args) {
 //		

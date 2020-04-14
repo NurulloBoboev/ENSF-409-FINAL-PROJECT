@@ -61,7 +61,7 @@ public class Server {
 			
 			//write the student object created in back end out to the client. 
 			objectOut.writeObject(theBackend.getStudent());
-			
+			socketOut.flush();
 			do {
 				
 				

@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import client.view.GUI;
+
 public class Client {
 
 	
@@ -38,12 +40,17 @@ public class Client {
 	public void communicateServer() {
 		
 		// Do socket work here to connect to the server and send info back and forth.
+		System.out.println("we here");
+		GUI GUI = new GUI(socketOut, aSocket, stdIn, socketIn, objectIn);
+		System.out.println("fucshitsfuck");
+		GUI.runGUI();
+		
 	}
 	
 	
 	
 	public static void main(String[] args) {
-		Client client = new Client("Local Host", 1000);
+		Client client = new Client("localhost", 1000);
 		client.communicateServer();
 
 	}
