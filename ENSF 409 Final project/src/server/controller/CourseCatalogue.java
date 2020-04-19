@@ -1,4 +1,4 @@
-package server.controller;
+0package server.controller;
 import java.util.ArrayList;
 
 public class CourseCatalogue {
