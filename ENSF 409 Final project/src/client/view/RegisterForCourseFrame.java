@@ -31,9 +31,9 @@ public class RegisterForCourseFrame extends MenuFrame {
 	private JTextField courseName = new JTextField();
 	private JTextField courseNum = new JTextField();
 	private JTextField secNum = new JTextField();
-	private JLabel cName = new JLabel("Course Name");
-	private JLabel cNum = new JLabel("Course Number");
-	private JLabel sNum = new JLabel("Section");
+	private JLabel cName = new JLabel("Course Name: ");
+	private JLabel cNum = new JLabel("	Course Number: ");
+	private JLabel sNum = new JLabel("	Section:");
 	
 	public JTextField getSecNum() {
 		return secNum;
@@ -62,33 +62,35 @@ public class RegisterForCourseFrame extends MenuFrame {
 		int w = 20;
 		frame = new JFrame("Register for Course");
 		frame.setLayout(new BorderLayout());
-		frame.setSize(400, 400);
+		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/4,Toolkit.getDefaultToolkit().getScreenSize().height/4);
 		frame.setLocationRelativeTo(null);
 		
 		
-		cName.setPreferredSize(new Dimension());
-		cNum.setPreferredSize(new Dimension());
-		sNum.setPreferredSize(new Dimension());
-		courseName.setPreferredSize(new Dimension());
-		courseNum.setPreferredSize(new Dimension());
-		secNum.setPreferredSize(new Dimension());
+		cName.setPreferredSize(new Dimension(85, 20));
+		cNum.setPreferredSize(new Dimension(100, 20));
+		sNum.setPreferredSize(new Dimension(55, 20));
+		courseName.setPreferredSize(new Dimension(80, 20));
+		courseNum.setPreferredSize(new Dimension(80, 20));
+		secNum.setPreferredSize(new Dimension(40, 20));
 		
 	
 		JPanel buttons = new JPanel(new FlowLayout());
 		buttons.add(addCourseBut);
 		buttons.add(cancelBut);
-		JPanel textFields = new JPanel();
-		textFields.add(courseName);
-		textFields.add(courseNum);
-		textFields.add(secNum);
-		JPanel texts = new JPanel();
-		texts.add(cName);
-		texts.add(cNum);
-		texts.add(sNum);
+		JPanel textName = new JPanel(new FlowLayout());
+		JPanel textNum = new JPanel(new FlowLayout());
+		JPanel textSec = new JPanel(new FlowLayout());
+		textName.add(cName);
+		textName.add(courseName);
+		textName.add(cNum);
+		textName.add(courseNum);
+		textName.add(sNum);
+		textName.add(secNum);
 		
 		frame.add("South", buttons);
-		frame.add("East", textFields);
-		frame.add("West", texts);
+		frame.add(textName);
+		//frame.add(textNum);
+		//frame.add(textSec);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
