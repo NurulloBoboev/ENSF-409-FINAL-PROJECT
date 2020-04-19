@@ -54,6 +54,40 @@ public class MenuFrame extends GUI{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	
+
+	public JButton getRegisterForCourseBut() {
+		return registerForCourseBut;
+	}
+
+	public void setRegisterForCourseBut(JButton registerForCourseBut) {
+		this.registerForCourseBut = registerForCourseBut;
+	}
+
+	public JButton getViewAllCoursesBut() {
+		return viewAllCoursesBut;
+	}
+
+	public void setViewAllCoursesBut(JButton viewAllCoursesBut) {
+		this.viewAllCoursesBut = viewAllCoursesBut;
+	}
+
+	public JButton getViewRegisteredCoursesBut() {
+		return viewRegisteredCoursesBut;
+	}
+
+	public void setViewRegisteredCoursesBut(JButton viewRegisteredCoursesBut) {
+		this.viewRegisteredCoursesBut = viewRegisteredCoursesBut;
+	}
+
+	public JButton getLogoutBut() {
+		return logoutBut;
+	}
+
+	public void setLogoutBut(JButton logoutBut) {
+		this.logoutBut = logoutBut;
+	}
+	
 	/*public static void main (String [] args)
 	{
 		MenuFrame mf = new MenuFrame();
