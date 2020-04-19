@@ -30,6 +30,46 @@ public class MenuFrame extends GUI{
 	}
 	
 	private JButton registerForCourseBut = new JButton("Register for a new course");
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JButton getRegisterForCourseBut() {
+		return registerForCourseBut;
+	}
+
+	public void setRegisterForCourseBut(JButton registerForCourseBut) {
+		this.registerForCourseBut = registerForCourseBut;
+	}
+
+	public JButton getViewAllCoursesBut() {
+		return viewAllCoursesBut;
+	}
+
+	public void setViewAllCoursesBut(JButton viewAllCoursesBut) {
+		this.viewAllCoursesBut = viewAllCoursesBut;
+	}
+
+	public JButton getViewRegisteredCoursesBut() {
+		return viewRegisteredCoursesBut;
+	}
+
+	public void setViewRegisteredCoursesBut(JButton viewRegisteredCoursesBut) {
+		this.viewRegisteredCoursesBut = viewRegisteredCoursesBut;
+	}
+
+	public JButton getLogoutBut() {
+		return logoutBut;
+	}
+
+	public void setLogoutBut(JButton logoutBut) {
+		this.logoutBut = logoutBut;
+	}
+
 	private JButton viewAllCoursesBut = new JButton("View all Courses");
 	private JButton viewRegisteredCoursesBut  = new JButton ("View Registered Courses");
 	private JButton logoutBut = new JButton ("Logout");
