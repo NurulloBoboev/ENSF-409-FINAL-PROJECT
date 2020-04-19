@@ -15,7 +15,11 @@ import java.util.concurrent.Executors;
 
 import server.controller.DBManager;
 import server.controller.Student;
-
+/**
+ * 
+ * @author Nurullo Boboev, Trevor Brown, Andrew Lattimer
+ *
+ */
 public class Server {
 
 	private ServerSocket serverSocket;
@@ -24,7 +28,6 @@ public class Server {
 	private BufferedReader socketIn; 
 	private PrintWriter socketOut;
 	private ObjectOutputStream objectOut;
-//	private ObjectInputStream objectIn;
 	
 	BackendServer theBackend;
 	
@@ -44,79 +47,18 @@ public class Server {
 	{
 		try 
 		{
+			while(true) {
 			aSocket = serverSocket.accept();
 			System.out.println("Connection accepted by server");
 			socketIn = new BufferedReader(new InputStreamReader(aSocket.getInputStream()));
 			socketOut = new PrintWriter(aSocket.getOutputStream());
-		
-			
 			objectOut = new ObjectOutputStream(aSocket.getOutputStream());
-			//objectIn = new ObjectInputStream(aSocket.getInputStream());
 			
+			BackendServer backend = new BackendServer(aSocket, socketIn, socketOut, objectOut);
+			pool.execute(backend);
 			
-			
-			//first use of the Server - get an int from the client and then find and establish a student object. 
-			while(true) {
-				System.out.println("waiting for input...");
-                int studID = Integer.parseInt(socketIn.readLine());
-            
-                System.out.println("Student ID received: " + studID);
-            
-                theBackend = new BackendServer(studID);
-                
-            //write the student object created in back end out to the client. 
-                Student st = theBackend.getStudent();
-                
-                if(st == null) {
-                	objectOut.writeObject(st);
-                	socketOut.flush();
-                    continue;
-                }
-                else
-                
-                objectOut.writeObject(st);
-                socketOut.flush();
-                break;
-            }
-			
-			do {
-				
-				
-				int input = Integer.parseInt(socketIn.readLine());
-				
-				
-				//different outputs depending on what the client sends back as an int from the gui commands? 
-				switch(input) {
-				
-				//display all courses on catalogue
-					case 1:
-						socketOut.println(theBackend.allCourses());
-						break;
-					
-				//view all taken courses 		
-					case 2: 
-						socketOut.println(theBackend.viewAllTakenCourses());
-						break;
-						
-				//view registered courses
-					case 3: 
-						socketOut.println(theBackend.viewRegCourses());
-						break;
-						
-				//if none of the cases, just go through loop again looking for some input. 		
-					default: 
-						continue;
-				
-				
-				}
-				
-				
-			
-				
-				
-				
-			} while(true);
-					
+			}
+							
 		}
 		catch (Exception e) 
 		{

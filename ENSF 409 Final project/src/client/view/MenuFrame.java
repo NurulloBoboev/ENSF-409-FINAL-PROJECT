@@ -54,11 +54,11 @@ public class MenuFrame extends GUI{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	/*public static void main (String [] args)
+	public static void main (String [] args)
 	{
 		MenuFrame mf = new MenuFrame();
 		mf.displayFrame();
 		
-	}*/
+	}
 	
 }

@@ -27,24 +27,26 @@ public class LoginFrameController {
 				// TODO Auto-generated method stub
 				System.out.println("did we crash?");
 				
-				frame.getSocketOut().println(frame.getUserID().getText());
-				frame.getSocketOut().flush();
-				
-				try {
-					frame.setStudent((Student) frame.getObjectIn().readObject());
-				} catch (ClassNotFoundException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				} catch (IOException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
+
 				
 				System.out.println("we didn't crash");
 				
-				if(frame.getUserID().getText().isEmpty() || Pattern.matches("[a-zA-Z]+", frame.getUserID().getText()) || frame.getUserID().getText().length() > 5){
-					JOptionPane.showMessageDialog(new JFrame(), "Incorrect input for Student ID. Please entera 5 digit ID");
-				} else
+				if(frame.getUserID().getText().isEmpty() || Pattern.matches("[a-zA-Z]+", frame.getUserID().getText()) || frame.getUserID().getText().length() != 5){
+					JOptionPane.showMessageDialog(new JFrame(), "Incorrect input for Student ID. Please enter a 5 digit ID");
+				} else {
+					frame.getSocketOut().println(frame.getUserID().getText());
+					frame.getSocketOut().flush();
+					
+					try {
+						frame.setStudent((Student) frame.getObjectIn().readObject());
+					} catch (ClassNotFoundException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
 					try {
 						if(frame.getStudent() == null){
 							JOptionPane.showMessageDialog(new JFrame(), "Student with ID " + frame.getUserID().getText() + " could not be found in our database. "
@@ -59,6 +61,7 @@ public class LoginFrameController {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+				}
 				
 			}});
 		

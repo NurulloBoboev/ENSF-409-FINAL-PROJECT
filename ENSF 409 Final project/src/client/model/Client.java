@@ -7,8 +7,15 @@ import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import client.view.GUI;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
+import client.view.GUI;
+/**
+ * 
+ * @author Nurullo Boboev, Trevor Brown, Andrew Lattimer
+ *
+ */
 public class Client {
 
 	
@@ -21,18 +28,20 @@ public class Client {
 	public Client(String serverName, int portNum) {
 		
 		try {
-			
 			aSocket = new Socket(serverName, portNum);
+		
 			stdIn = new BufferedReader(new InputStreamReader(System.in));
 			socketIn = new BufferedReader(new InputStreamReader(aSocket.getInputStream()));
 			socketOut = new PrintWriter(aSocket.getOutputStream(), true);
 			objectIn = new ObjectInputStream(aSocket.getInputStream());
+				
 		} catch(IOException e) {
 			e.printStackTrace();
-		}
+			JOptionPane.showMessageDialog(new JFrame(), "Could not connect to server. Please try again.");
+			System.exit(1);
+		} 
 		
-		
-		
+			
 	}
 	
 	
