@@ -78,8 +78,8 @@ public class RegisterForCourseFrame extends MenuFrame {
 		buttons.add(addCourseBut);
 		buttons.add(cancelBut);
 		JPanel textName = new JPanel(new FlowLayout());
-		JPanel textNum = new JPanel(new FlowLayout());
-		JPanel textSec = new JPanel(new FlowLayout());
+		//JPanel textNum = new JPanel(new FlowLayout());
+		//JPanel textSec = new JPanel(new FlowLayout());
 		textName.add(cName);
 		textName.add(courseName);
 		textName.add(cNum);
