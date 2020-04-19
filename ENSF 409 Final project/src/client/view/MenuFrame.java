@@ -44,6 +44,7 @@ public class MenuFrame extends GUI{
 		frame.add("North", new JLabel("	Welcome "+student.getStudentName()+"! ID: "+student.getStudentId()));
 		
 		JPanel buttons = new JPanel(new FlowLayout());
+		
 		buttons.add(registerForCourseBut);
 		buttons.add(viewAllCoursesBut);
 		buttons.add(viewRegisteredCoursesBut);
@@ -54,11 +55,11 @@ public class MenuFrame extends GUI{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public static void main (String [] args)
+	/*public static void main (String [] args)
 	{
 		MenuFrame mf = new MenuFrame();
 		mf.displayFrame();
 		
-	}
+	} */
 	
 }

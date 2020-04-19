@@ -141,10 +141,8 @@ public class BackendServer implements Runnable{
 	
 	public void addCourseToStudentReg(String courseName, int secNum) {
 		
-		
-		
-		
 	}
+	
 	@Override
 	public void run() {
 		try {
