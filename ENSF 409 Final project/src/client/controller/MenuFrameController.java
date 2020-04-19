@@ -1,6 +1,8 @@
 package client.controller;
 
 import client.view.MenuFrame;
+import client.view.RegisterForCourseFrame;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +22,10 @@ public class MenuFrameController {
 		frame.getRegisterForCourseBut().addActionListener(new ActionListener(){
 				@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.getSocketOut().println("4");//This line is supposed to sned the switch case to 
+				RegisterForCourseFrame register = new RegisterForCourseFrame(frame.getSocketOut(), frame.getaSocket(), frame.getStdIn(), frame.getSocketIn(), frame.getObjectIn(), frame.getStudent());
+				frame.getSocketOut().println("4");
+				register.displayFrame();
+													//This line is supposed to sned the switch case to 
 				frame.getSocketOut().flush();     //the socket(Line 23)
 			}
 				});

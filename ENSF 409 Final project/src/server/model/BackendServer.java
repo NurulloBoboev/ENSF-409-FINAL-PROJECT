@@ -78,7 +78,9 @@ public class BackendServer implements Runnable{
 			//view registered courses
 				case 3: 
 					socketOut.println(viewRegCourses());
-					break;					
+					break;	
+				case 4:
+					//String regex for string via the socket
 			//if none of the cases, just go through loop again looking for some input. 		
 				default: 
 					continue;						
