@@ -49,7 +49,6 @@ public class CourseOffering implements Serializable{
 	public void addRegistration(Registration registration) {
 		// TODO Auto-generated method stub
 		offeringRegList.add(registration);
-		secCap--;
 		
 	}
 	

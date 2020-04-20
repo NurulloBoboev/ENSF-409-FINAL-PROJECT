@@ -82,6 +82,7 @@ public class Student implements Serializable {
 		if(preReqMet == true && !studentRegList.contains(registration) && studentRegList.size() < 6 && notInCourseYet(registration) == false) {
 			System.out.println("we POGGING boys.");
 			studentRegList.add(registration);
+			registration.getTheOffering().setSecCap(registration.getTheOffering().getSecCap() -1);
 			DBManager.updateStudentRegistration(this, registration);
 			return 1;
 		} else if(preReqMet == true && !studentRegList.contains(registration) && studentRegList.size() < 6 && notInCourseYet(registration) == true){
