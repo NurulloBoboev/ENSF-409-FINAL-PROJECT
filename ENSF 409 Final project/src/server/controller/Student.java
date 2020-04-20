@@ -74,12 +74,17 @@ public class Student implements Serializable {
 			}
 		}
 		
-		if(preReqMet == true) {
+		if(preReqMet == true && !studentRegList.contains(registration)) {
 			studentRegList.add(registration);
+			DBManager.updateStudentRegistration(this, registration);
 		} else 
 			System.out.println("ERROR! Could not add the course. --> ADD AN ERROR SCREEN HERE PLEASE");
 	}
 
+	//ONLY FOR ADDING FROM THE DATABASE
+	public void updateRegistration(Registration registration) {
+		studentRegList.add(registration);	
+	}
 	
 	public String viewRegisterdCourses() {
 		
@@ -112,6 +117,13 @@ public class Student implements Serializable {
 		this.registeredCoursesKey = registeredCoursesKey;
 	}
 	
+	
+	
+	public String registeredCoursesData() {
+		//LIKELY NEED TO FORMAT HERE
+		return studentRegList.toString();
+		
+	}
 	
 	
 }
