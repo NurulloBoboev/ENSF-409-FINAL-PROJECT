@@ -124,27 +124,31 @@ public class DBManager {
 	public void updateCourseOfferings() {
 		
 		
-		for(Course c: courseList) {
+	
 			try {
 				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
 				Statement statement = connection.createStatement();
-				String selectFrom = c.getCourseName().toLowerCase() + c.getCourseNum() + "offerings";
 				
-				ResultSet resultSet = statement.executeQuery("select * from " + selectFrom);
+				for(Course c: courseList) {
 				
-				while(resultSet.next()) {
+					String selectFrom = c.getCourseName().toLowerCase() + c.getCourseNum() + "offerings";
+				
+					ResultSet resultSet = statement.executeQuery("select * from " + selectFrom);
+				
+					while(resultSet.next()) {
 					
-					CourseOffering offering = new CourseOffering(c, resultSet.getInt("secnum"), resultSet.getInt("seccap"));
-					c.addOffering(offering);
-				}
+						CourseOffering offering = new CourseOffering(c, resultSet.getInt("secnum"), resultSet.getInt("seccap"));
+						c.addOffering(offering);
+					}
 				
+				}
 				connection.close();
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-		}
+		
 		
 	}
 	
