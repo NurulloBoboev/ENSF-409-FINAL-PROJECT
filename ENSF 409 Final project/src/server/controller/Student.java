@@ -61,7 +61,7 @@ public class Student implements Serializable {
 		return st;
 	}
 
-	public boolean addRegistration(Registration registration) {
+	public int addRegistration(Registration registration) {
 		// TODO Auto-generated method stub	
 		//YALL NEED TO DO A POP UP OR ERROR HERE!!!
 		
@@ -84,10 +84,12 @@ public class Student implements Serializable {
 			System.out.println("we POGGING boys.");
 			studentRegList.add(registration);
 			DBManager.updateStudentRegistration(this, registration);
-			return true;
-		} else {
-			return false;
-		}
+			return 1;
+		} else if(preReqMet == true && !studentRegList.contains(registration) && studentRegList.size() < 6 && notInCourseYet(registration) == true){
+			System.out.println("boolean is: " + notInCourseYet(registration));
+			return 2;
+		} else
+			return 0;
 	}
 
 	//ONLY FOR ADDING FROM THE DATABASE
