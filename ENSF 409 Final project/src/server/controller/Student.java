@@ -72,6 +72,7 @@ public class Student implements Serializable {
                 if(c.getCourseName().equals(registration.getTheOffering().getTheCourse().getPreReq().getCourseName())) {
                     preReqMet = true;    
                     break;
+                    
                 }
             }
         }
