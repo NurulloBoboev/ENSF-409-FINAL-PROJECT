@@ -1,9 +1,12 @@
 package client.controller;
 
 import client.view.MenuFrame;
+import client.view.ViewAllCoursesFrame;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 public class MenuFrameController {
@@ -30,6 +33,17 @@ public class MenuFrameController {
 			public void actionPerformed(ActionEvent e) {
 				frame.getSocketOut().println("1");
 				frame.getSocketOut().flush();
+				
+				ViewAllCoursesFrame allCourses = new ViewAllCoursesFrame(frame.getSocketOut(), 
+						frame.getaSocket(), frame.getStdIn(), frame.getSocketIn(), frame.getObjectIn());
+				
+				try {
+					allCourses.displayFrame();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 			}
 				});
 		

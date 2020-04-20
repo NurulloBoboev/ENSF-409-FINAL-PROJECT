@@ -51,7 +51,7 @@ public class Course {
 		st += "\nAll course sections:\n";
 		for (CourseOffering c : offeringList)
 			st += c;
-		st += "\n-------\n";
+		st += "\n-------------------------------------\n";
 		return st;
 	}
 

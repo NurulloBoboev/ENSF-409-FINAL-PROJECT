@@ -61,15 +61,18 @@ public class BackendServer implements Runnable{
         }
 		
 		do {
-			
+			System.out.println("Switch statement is activated");
 			int input = Integer.parseInt(socketIn.readLine());
-					
+			System.out.println("Client request received. Client sent: " + input);
 			//different outputs depending on what the client sends back as an int from the gui commands? 
 			switch(input) {
 			
 			//display all courses on catalogue
 				case 1:
-					socketOut.print(allCourses());
+					System.out.println("Case 1 has been reached");
+					System.out.println(allCourses());
+					socketOut.println(allCourses());
+					socketOut.flush();
 					break;				
 			//view all taken courses 		
 				case 2: 
@@ -141,10 +144,8 @@ public class BackendServer implements Runnable{
 	
 	public void addCourseToStudentReg(String courseName, int secNum) {
 		
-		
-		
-		
 	}
+	
 	@Override
 	public void run() {
 		try {
