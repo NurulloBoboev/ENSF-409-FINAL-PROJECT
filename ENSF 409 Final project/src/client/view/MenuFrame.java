@@ -84,7 +84,13 @@ public class MenuFrame extends GUI{
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/2, Toolkit.getDefaultToolkit().getScreenSize().height/6);
 		frame.setLocationRelativeTo(null);
 		
-		frame.add("North", new JLabel("	Welcome "+student.getStudentName()+"! ID: "+student.getStudentId()));
+		JLabel welcomeMessage = new JLabel("	Welcome "+student.getStudentName()+"! ID: "+student.getStudentId(), SwingConstants.CENTER);
+		welcomeMessage.setFont(new Font(welcomeMessage.getFont().toString(), Font.BOLD, 18));
+		
+		
+		frame.add("Center", welcomeMessage);
+		
+		//frame.add("North", new JLabel("	Welcome "+student.getStudentName()+"! ID: "+student.getStudentId(), SwingConstants.CENTER));
 		
 		JPanel buttons = new JPanel(new FlowLayout());
 		
