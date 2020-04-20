@@ -6,7 +6,7 @@ import client.view.MenuFrame;
 import client.view.RegisterForCourseFrame;
 
 import client.view.ViewAllCoursesFrame;
-
+import client.view.ViewRegisteredFrame;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -59,6 +59,17 @@ public class MenuFrameController {
 			public void actionPerformed(ActionEvent e) {
 				frame.getSocketOut().println("3");
 				frame.getSocketOut().flush();
+				
+				ViewRegisteredFrame allCourses = new ViewRegisteredFrame(frame.getSocketOut(), 
+						frame.getaSocket(), frame.getStdIn(), frame.getSocketIn(), frame.getObjectIn());
+				
+				try {
+					allCourses.displayFrame();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		
@@ -68,6 +79,7 @@ public class MenuFrameController {
 				LogoutFrame logout = new LogoutFrame(frame);
 				logout.display();
 				frame.getFrame().dispose();
+				System.exit(1);
 			}
 		});
 	}

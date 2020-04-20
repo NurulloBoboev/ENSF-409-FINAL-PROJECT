@@ -81,7 +81,7 @@ public class MenuFrame extends GUI{
 	{
 		frame = new JFrame ("Student Menu");
 		frame.setLayout(new BorderLayout());
-		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/2, Toolkit.getDefaultToolkit().getScreenSize().height/6);
+		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/6);
 		frame.setLocationRelativeTo(null);
 		
 		frame.add("North", new JLabel("	Welcome "+student.getStudentName()+"! ID: "+student.getStudentId()));
