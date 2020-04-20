@@ -111,35 +111,6 @@ public class GUI {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	
-	
-	
-	public BufferedReader getStdIn() {
-		return stdIn;
-	}
 
-	public void setStdIn(BufferedReader stdIn) {
-		this.stdIn = stdIn;
-	}
-
-	public BufferedReader getSocketIn() {
-		return socketIn;
-	}
-
-	public void setSocketIn(BufferedReader socketIn) {
-		this.socketIn = socketIn;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
-	public Socket getaSocket() {
-		return aSocket;
-	}
-
-	public void setaSocket(Socket aSocket) {
-		this.aSocket = aSocket;
-	}
 
 }
