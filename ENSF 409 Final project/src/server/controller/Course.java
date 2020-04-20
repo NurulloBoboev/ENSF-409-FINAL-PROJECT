@@ -21,7 +21,7 @@ public class Course {
 
 	
 	
-	public Course(String courseName, int CourseNum, String preReqName, int preReqNum) {
+	public Course(String courseName, int courseNum, String preReqName, int preReqNum) {
 		
 		this.setCourseName(courseName);
 		this.setCourseNum(CourseNum);

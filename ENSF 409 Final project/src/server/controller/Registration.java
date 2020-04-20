@@ -11,7 +11,7 @@ public class Registration {
 	public void completeRegistration (Student st, CourseOffering of) {
 		theStudent = st;
 		theOffering = of;
-		addRegistration ();
+		addRegistration();
 	}
 	
 	private void addRegistration () {
