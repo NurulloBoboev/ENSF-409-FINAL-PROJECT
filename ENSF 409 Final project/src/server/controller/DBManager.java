@@ -3,56 +3,88 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.sql.*;
 
-//This class is simulating a database for our
-//program
+
 public class DBManager {
 	
 	ArrayList <Course> courseList;
 	ArrayList<Student> studentList; 
 
 	public DBManager () {
+	
 	}
 
 	
 	
-	public ArrayList<Student> readStudentDataBase() {
-		
-		studentList = new ArrayList<Student>();
-		Scanner textFileInputs = null; 
-		
-		String firstName, lastName;
-		int id;
-		
-		//read from a basic dummy text file containing student names, numbers, etc. 
-		try {
-			textFileInputs = new Scanner(new File("StudentList.txt"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		while(textFileInputs.hasNext()) {
-			
-			firstName = textFileInputs.next();
-			lastName = textFileInputs.next();
-			String name = firstName + " " + lastName;
-			id = Integer.parseInt(textFileInputs.next());
-			
-			
-			Student st = new Student(name, id);
-			
-			studentList.add(st);
-			
-			
-		}
-		
 	
+	///
+	public ArrayList<Student> readStudentDataBase(CourseCatalogue theCatalogue) {
+		studentList = new ArrayList<Student>();
+		
+		
+		try {
+			
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
+			Statement statement = connection.createStatement();
+			
+			
+			ResultSet resultSet = statement.executeQuery("select * from student");
+			
+			
+			
+			
+			
+			while(resultSet.next()) {
+				
+				
+				Student st = new Student(resultSet.getNString("name"), resultSet.getInt("id"), resultSet.getInt("prereqkey"), resultSet.getInt("registeredcourseskey"));
+				
+				
+				studentList.add(st);
+			}
+			
+		
+			
+			
+			
+			for(Student s : studentList) {
+				
+				ResultSet resultSetPreReq = statement.executeQuery("select * from " +s.getPreReqKey() +"prereq");
+				
+				
+				ArrayList<Course> preReqCourses = new ArrayList<Course>();
+				
+				while(resultSetPreReq.next()) {
+					
+					//search if course exists and if it does set it. 
+					Course course = theCatalogue.searchCat(resultSetPreReq.getString("coursename"), resultSetPreReq.getInt("coursenum"));
+					
+					preReqCourses.add(course);
+					
+				
+				}
+				
+				
+			}
+			
+			
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		
 		return studentList;
+		
 	}
 	
+	
+	
+	//READ ALL COURSES IN FIRST. -> THEN CAN ESSTABLISH THE STUDENT INFO BECASUE THE COURSES NOW EXIST IN THE CATALOGUE SO I CAN 
+	// SEARCH FOR THEM AND ASSIGN THE OBJECT WHICH HAS ALREADY BEEN CONSTRUCTED
 	
 	
 	
@@ -60,36 +92,39 @@ public class DBManager {
 		
 		courseList = new ArrayList<Course>();
 		
-		Scanner textFileInputs = null; 
-		
-		String className;
-		int classNum;
-		
-		//read from a basic dummy text file containing student names, numbers, etc. 
 		try {
-			textFileInputs = new Scanner(new File("CourseList.txt"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
+		Statement statement = connection.createStatement();
+		
+		
+		
+		ResultSet resultSet = statement.executeQuery("select * from allcourses");
+		
+		
+		while(resultSet.next()) {
+			
+			Course c = new Course(resultSet.getString("coursename"), resultSet.getInt("coursenum"), resultSet.getString("preReqName"), resultSet.getInt("preReqNum"));
+			courseList.add(c);
+			
+		}
+		
+		
+		
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 		
 		
-		while(textFileInputs.hasNextLine()) {
-			
-			className = textFileInputs.next();
-			classNum = Integer.parseInt(textFileInputs.next());
-		
-			
-			Course c = new Course(className, classNum);
-			
-			courseList.add(c);
-			
-			
-		}
 		
 	
+		
 		return courseList;
+		
+		
 	}
+	
+	
 
 }

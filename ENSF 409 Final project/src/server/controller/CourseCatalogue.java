@@ -14,6 +14,15 @@ public class CourseCatalogue {
 		DBManager db = new DBManager();
 		setCourseList(db.readFromDataBase());
 		
+		
+		//sets pre reqs to existing course options
+		for(Course c: courseList) {
+			
+			c.setPreReq(searchCat(c.preReqName, c.preReqNum));
+			
+		}
+		
+		
 	}
 	public void createCourseOffering (Course c, int secNum, int secCap) {
 		if (c!= null) {

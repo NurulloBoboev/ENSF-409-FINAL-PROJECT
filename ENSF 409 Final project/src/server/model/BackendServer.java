@@ -34,7 +34,7 @@ public class BackendServer implements Runnable{
 		
 		catalogue = new CourseCatalogue();
 		DBManager db = new DBManager();
-		studentList = db.readStudentDataBase();
+		studentList = db.readStudentDataBase(catalogue);
 	}
 	
 	public void communicateWithClient() throws NumberFormatException, IOException{
@@ -98,6 +98,8 @@ public class BackendServer implements Runnable{
 		student = null;
 		
 		for(Student s : studentList) {
+			
+			System.out.println("Student name: " + s.getStudentName());
 			
 			if(s.getStudentId() == id)
 				student = s;

@@ -13,11 +13,12 @@ public class Student implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String studentName;
 	private int studentId;
-	//private ArrayList<CourseOffering> offeringList;
+	
+	private int preReqKey;
+	private int registeredCoursesKey;
 	private ArrayList<Registration> studentRegList;
-	
-	
 	private ArrayList<Course> preReqs;
+	
 	
 	public Student (String studentName, int studentId) {
 		this.setStudentName(studentName);
@@ -25,6 +26,19 @@ public class Student implements Serializable {
 		studentRegList = new ArrayList<Registration>();
 	}
 
+	
+	
+	public Student (String studentName, int studentId, int preReqKey, int registeredCoursesKey ) {
+		this.setStudentName(studentName);
+		this.setStudentId(studentId);
+		studentRegList = new ArrayList<Registration>();
+		
+		this.preReqKey = preReqKey;
+		this.registeredCoursesKey = registeredCoursesKey;
+		
+	}
+	
+	
 	public String getStudentName() {
 		return studentName;
 	}
@@ -58,5 +72,32 @@ public class Student implements Serializable {
 		return studentRegList.toString();
 		
 	}
+
+	public int getPreReqKey() {
+		return preReqKey;
+	}
+
+	public void setPreReqKey(int preReqKey) {
+		this.preReqKey = preReqKey;
+	}
+
+	
+	public void setPreReqs(ArrayList<Course> studentPreReqs) {
+		
+		this.preReqs = studentPreReqs; 
+		
+	}
+	
+	
+	
+	public int getRegisteredCoursesKey() {
+		return registeredCoursesKey;
+	}
+
+	public void setRegisteredCoursesKey(int registeredCoursesKey) {
+		this.registeredCoursesKey = registeredCoursesKey;
+	}
+	
+	
 	
 }
