@@ -9,9 +9,10 @@ public class CourseOffering {
 	//private ArrayList<Student> studentList;
 	private ArrayList <Registration> offeringRegList;
 	
-	public CourseOffering (int secNum, int secCap) {
+	public CourseOffering (Course c, int secNum, int secCap) {
 		this.setSecNum(secNum);
 		this.setSecCap(secCap);
+		theCourse = c;
 		offeringRegList = new ArrayList <Registration>();
 	}
 	public int getSecNum() {
