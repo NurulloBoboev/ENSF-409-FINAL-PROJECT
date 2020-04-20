@@ -9,7 +9,7 @@ import java.net.Socket;
 
 import javax.swing.*;
 
-
+import client.controller.RegisterForCourseController;
 import server.controller.Student;
 
 public class RegisterForCourseFrame extends MenuFrame {
@@ -92,6 +92,8 @@ public class RegisterForCourseFrame extends MenuFrame {
 		//frame.add(textNum);
 		//frame.add(textSec);
 		frame.setVisible(true);
+		RegisterForCourseController controller = new RegisterForCourseController(this);
+        controller.runController();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

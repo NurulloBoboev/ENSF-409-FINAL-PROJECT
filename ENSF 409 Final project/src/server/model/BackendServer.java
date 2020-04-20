@@ -80,7 +80,27 @@ public class BackendServer implements Runnable{
 					socketOut.println(viewRegCourses());
 					break;	
 				case 4:
-					//String regex for string via the socket
+					String name = socketIn.readLine();
+					String num = socketIn.readLine();
+					String section = socketIn.readLine();
+					int cNum = Integer.parseInt(num);
+					int sNum = Integer.parseInt(section);
+					Course courseToAdd = catalogue.searchCat(name, cNum);
+					if(courseToAdd == null)
+					{
+						socketOut.println("Sorry, course was not found");
+					}
+					else
+					{
+						registerCourse(courseToAdd, sNum);
+						socketOut.println(viewRegCourses());
+					}
+					break;
+				case 5:
+					
+					
+					
+					
 			//if none of the cases, just go through loop again looking for some input. 		
 				default: 
 					continue;						
@@ -115,11 +135,10 @@ public class BackendServer implements Runnable{
 		
 	//register courses 
 	
-	public void registerCourse(Course c) {
-		
+	public void registerCourse(Course c, int offering) {
 		Registration r = new Registration();
-		r.completeRegistration(student, c.getCourseOfferingAt(0));
-				
+		r.completeRegistration(student, c.getCourseOfferingAt(offering));
+		addCourseToStudentReg(r);		
 	}
 	
 	//view Registered courses
@@ -141,12 +160,13 @@ public class BackendServer implements Runnable{
 	}
 	
 	
-	public void addCourseToStudentReg(String courseName, int secNum) {
+	public void addCourseToStudentReg(Registration r) {
 		
-		
-		
-		
+		student.addRegistration(r);
+
 	}
+	
+	
 	@Override
 	public void run() {
 		try {

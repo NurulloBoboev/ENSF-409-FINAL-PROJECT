@@ -23,7 +23,7 @@ public class RegisterForCourseController {
 				String name = register.getCourseName().getText();
 				String num = register.getCourseNum().getText();
 				String sec = register.getSecNum().getText();
-				String sendToServer = name+" "+num+" "+sec;
+				String sendToServer = name+"\n"+num+"\n"+sec;
 				register.getSocketOut().println(sendToServer);
 				
 			}

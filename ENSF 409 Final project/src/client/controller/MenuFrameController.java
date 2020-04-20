@@ -24,8 +24,7 @@ public class MenuFrameController {
 			public void actionPerformed(ActionEvent e) {
 				RegisterForCourseFrame register = new RegisterForCourseFrame(frame.getSocketOut(), frame.getaSocket(), frame.getStdIn(), frame.getSocketIn(), frame.getObjectIn(), frame.getStudent());
 				frame.getSocketOut().println("4");
-				register.displayFrame();
-													//This line is supposed to sned the switch case to 
+				register.displayFrame();		//This line is supposed to sned the switch case to 
 				frame.getSocketOut().flush();     //the socket(Line 23)
 			}
 				});
