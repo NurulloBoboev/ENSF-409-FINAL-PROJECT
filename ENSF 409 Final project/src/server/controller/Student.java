@@ -62,9 +62,7 @@ public class Student implements Serializable {
 	}
 
 	public int addRegistration(Registration registration) {
-		// TODO Auto-generated method stub	
-		//YALL NEED TO DO A POP UP OR ERROR HERE!!!
-		
+	
 		boolean preReqMet = false;
     
 		if(registration.getTheOffering().getTheCourse().getPreReq() != null) {
