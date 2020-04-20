@@ -96,6 +96,8 @@ public class BackendServer implements Runnable{
 		
 		for(Student s : studentList) {
 			
+			System.out.println("Student name: " + s.getStudentName());
+			
 			if(s.getStudentId() == id)
 				student = s;
 			
