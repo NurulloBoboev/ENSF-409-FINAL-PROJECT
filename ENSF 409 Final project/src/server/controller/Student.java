@@ -94,6 +94,7 @@ public class Student implements Serializable {
 	//ONLY FOR ADDING FROM THE DATABASE
 	public void updateRegistration(Registration registration) {
 		studentRegList.add(registration);	
+		registration.getTheOffering().setSecCap(registration.getTheOffering().getSecCap() -1);
 	}
 	
 	public String viewRegisterdCourses() {
