@@ -12,7 +12,7 @@ public class DBManager {
 	ArrayList<Student> studentList; 
 
 	public DBManager () {
-	
+		
 	}
 
 	
@@ -76,6 +76,7 @@ public class DBManager {
 			
 		}
 		
+		setStudentRegisterdCourses(theCatalogue);
 		
 		return studentList;
 		
@@ -150,6 +151,83 @@ public class DBManager {
 
 	}
 	
+	
+	
+	//made static such that a new DBManager object does not need to be constructed each time a 
+	//student wants to update their registration
+	public static void updateStudentRegistration(Student s, Registration r) {
+		
+		String tableName = s.getStudentId() + "registeredcourses";
+		
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
+			Statement statement = connection.createStatement();
+			java.sql.DatabaseMetaData dbm = connection.getMetaData();
+            ResultSet rs = dbm.getTables(null, null, tableName, null);
+        
+            	//fill existing table
+            	String sql = "INSERT INTO " + tableName.toLowerCase() + " " +
+        					 "VALUES ('" + r.getTheOffering().getTheCourse().getCourseName() + "', " + 
+        		    		r.getTheOffering().getTheCourse().getCourseNum() + ", " + r.getTheOffering().getSecNum() + ", " +
+        					 r.getTheOffering().getSecCap() +")";
+        		    
+        	    statement.executeUpdate(sql);
+        	    connection.close();
+                     
+       
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		
+	}
+	
+	//made static such that a new DBManager object does not need to be constructed each time a 
+	//student wants to view registration data
+	
+	public void setStudentRegisterdCourses(CourseCatalogue theCatalogue) {
+		String tableString = "";
+		
+		try {
+		
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
+			Statement statement = connection.createStatement();	
+			
+			for(Student s: studentList) {
+				tableString = s.getStudentId() + "registeredcourses";
+				ResultSet resultSet = statement.executeQuery("select * from " + tableString);
+				
+				while(resultSet.next()) {
+					
+					//search for course in course catalog and add it to the students registered courses if it exists. 
+					Course c = theCatalogue.searchCat(resultSet.getString("coursename"), resultSet.getInt("coursenum"));
+					
+					//now traverse through the courses offerings to see if it matches an existing offering
+					for(CourseOffering o: c.getCourseOfferings()) {
+						//if the offering exists then add it to the student 
+						if(o.getSecNum() == resultSet.getInt("secnum")) {
+							Registration r = new Registration();
+							r.setTheOffering(o);
+							r.setTheStudent(s);
+							s.updateRegistration(r);
+						}
+						
+					}
+					
+				}
+			
+			}
+		
+			connection.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 
 }
