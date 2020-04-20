@@ -120,13 +120,9 @@ public class Student implements Serializable {
 	
 	public boolean notInCourseYet(Registration reg) {
 		
-		String regName = reg.getTheOffering().getTheCourse().getCourseName() + reg.getTheOffering().getTheCourse().getCourseNum();
-		
 		for (Registration r: studentRegList) {
 			
-			String name = r.getTheOffering().getTheCourse().getCourseName() + r.getTheOffering().getTheCourse().getCourseNum();
-			
-			if(regName.equals(name))
+			if(r.getTheOffering().getTheCourse().getCourseName().equals(reg.getTheOffering().getTheCourse().getCourseName())) {}
 			return true;
 			
 		}
