@@ -58,6 +58,11 @@ public class RegisterForCourseController {
 								+ "requirements for the course.");
 						register.getFrame().dispose();
 					}
+					else if(serverMessage.equals("dupe")) {
+						JOptionPane.showMessageDialog(new JFrame(), "Course found, but you have already"
+								+ " registered for this course");
+						register.getFrame().dispose();
+					}
 					
 				//	ServerMessageFrame messageFrame  = new ServerMessageFrame(serverMessage);
 					
