@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutorService;
 
 import server.controller.Course;
 import server.controller.CourseCatalogue;
+import server.controller.CourseOffering;
 import server.controller.DBManager;
 import server.controller.Registration;
 import server.controller.Student;
@@ -136,9 +137,10 @@ public class BackendServer implements Runnable{
 	//register courses 
 	
 	public void registerCourse(Course c, int offering) {
+		CourseOffering theOffering  = c.getCourseOfferingAt(offering);
 		Registration r = new Registration();
-		r.completeRegistration(student, c.getCourseOfferingAt(offering));
-		addCourseToStudentReg(r);		
+		r.completeRegistration(student, theOffering);
+		addCourseToStudentReg(r);
 	}
 	
 	//view Registered courses

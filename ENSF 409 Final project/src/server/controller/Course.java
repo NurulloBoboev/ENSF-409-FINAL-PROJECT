@@ -58,9 +58,15 @@ public class Course {
 	public CourseOffering getCourseOfferingAt(int i) {
 		// TODO Auto-generated method stub
 		if (i < 0 || i >= offeringList.size() )
+		{
+			System.out.println("i am here");
 			return null;
+		}
 		else
+		{
 			return offeringList.get(i);
+		}
+		
 	}
 
 }
