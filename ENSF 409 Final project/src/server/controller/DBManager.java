@@ -130,7 +130,7 @@ public class DBManager {
 				Statement statement = connection.createStatement();
 				String selectFrom = c.getCourseName().toLowerCase() + c.getCourseNum() + "offerings";
 				
-				ResultSet resultSet = statement.executeQuery("select * from selectFrom");
+				ResultSet resultSet = statement.executeQuery("select * from " + selectFrom);
 				
 				while(resultSet.next()) {
 					
