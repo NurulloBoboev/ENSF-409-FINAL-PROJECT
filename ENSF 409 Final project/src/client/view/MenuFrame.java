@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import javax.swing.*;
+
+import client.controller.MenuFrameController;
+
 import java.awt.*;
 
 
@@ -92,6 +95,9 @@ public class MenuFrame extends GUI{
 		
 		frame.add("South", buttons);
 		frame.setVisible(true);
+		
+		MenuFrameController controller = new MenuFrameController(this);
+		controller.runController();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
