@@ -86,7 +86,6 @@ public class Student implements Serializable {
 			DBManager.updateStudentRegistration(this, registration);
 			return true;
 		} else {
-			System.out.println("ERROR! Could not add the course. --> ADD AN ERROR SCREEN HERE PLEASE");
 			return false;
 		}
 	}
