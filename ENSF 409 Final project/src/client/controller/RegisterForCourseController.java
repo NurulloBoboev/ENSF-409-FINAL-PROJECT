@@ -2,8 +2,10 @@ package client.controller;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 import client.view.RegisterForCourseFrame;
+import client.view.ServerMessageFrame;
 
 public class RegisterForCourseController {
 	
@@ -25,6 +27,13 @@ public class RegisterForCourseController {
 				String sec = register.getSecNum().getText();
 				String sendToServer = name+"\n"+num+"\n"+sec;
 				register.getSocketOut().println(sendToServer);
+				try {
+					String serverMessage = register.getSocketIn().readLine();
+					ServerMessageFrame messageFrame  = new ServerMessageFrame(serverMessage);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
