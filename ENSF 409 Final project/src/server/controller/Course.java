@@ -1,3 +1,4 @@
+
 package server.controller;
 import java.util.ArrayList;
 
@@ -5,17 +6,35 @@ public class Course {
 
 	private String courseName;
 	private int courseNum;
-	private ArrayList<Course> preReq;
+	private Course preReq;
 	private ArrayList<CourseOffering> offeringList;
+	
+	String preReqName;
+	int preReqNum;
 
 	public Course(String courseName, int courseNum) {
 		this.setCourseName(courseName);
 		this.setCourseNum(courseNum);
 		// Both of the following are only association
-		preReq = new ArrayList<Course>();
 		offeringList = new ArrayList<CourseOffering>();
 	}
 
+	
+	
+	public Course(String courseName, int CourseNum, String preReqName, int preReqNum) {
+		
+		this.setCourseName(courseName);
+		this.setCourseNum(CourseNum);
+		// Both of the following are only association
+		offeringList = new ArrayList<CourseOffering>();
+		
+		this.preReqName = preReqName;
+		this.preReqNum = preReqNum;
+		
+	}
+	
+	
+	
 	public void addOffering(CourseOffering offering) {
 		if (offering != null && offering.getTheCourse() == null) {
 			offering.setTheCourse(this);
@@ -51,22 +70,29 @@ public class Course {
 		st += "\nAll course sections:\n";
 		for (CourseOffering c : offeringList)
 			st += c;
-		st += "\n-------\n";
+		st += "\n-------------------------------------\n";
 		return st;
 	}
 
 	public CourseOffering getCourseOfferingAt(int i) {
 		// TODO Auto-generated method stub
 		if (i < 0 || i >= offeringList.size() )
-		{
-			System.out.println("i am here");
 			return null;
-		}
 		else
-		{
 			return offeringList.get(i);
-		}
-		
+	}
+
+
+
+	public Course getPreReq() {
+		return preReq;
+	}
+
+
+
+	public void setPreReq(Course preReq) {
+		this.preReq = preReq;
 	}
 
 }
+

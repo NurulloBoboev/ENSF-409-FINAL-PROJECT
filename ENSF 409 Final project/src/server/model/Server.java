@@ -43,7 +43,7 @@ public class Server {
 		}	
 	}
 	
-	public void communicateWithClient(DBManager database) throws IOException
+	public void communicateWithClient() throws IOException
 	{
 		try 
 		{
@@ -71,10 +71,9 @@ public class Server {
 	{
 		Server server = new Server(1000);
 		System.out.println("Server is now running!");
-		DBManager database = new DBManager();
 		try 
 		{
-			server.communicateWithClient(database);
+			server.communicateWithClient();
 			
 		}
 		catch(IOException e) 

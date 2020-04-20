@@ -35,7 +35,7 @@ public class BackendServer implements Runnable{
 		
 		catalogue = new CourseCatalogue();
 		DBManager db = new DBManager();
-		studentList = db.readStudentDataBase();
+		studentList = db.readStudentDataBase(catalogue);
 	}
 	
 	public void communicateWithClient() throws NumberFormatException, IOException{
@@ -62,15 +62,18 @@ public class BackendServer implements Runnable{
         }
 		
 		do {
-			
+			System.out.println("Switch statement is activated");
 			int input = Integer.parseInt(socketIn.readLine());
-					
+			System.out.println("Client request received. Client sent: " + input);
 			//different outputs depending on what the client sends back as an int from the gui commands? 
 			switch(input) {
 			
 			//display all courses on catalogue
 				case 1:
-					socketOut.print(allCourses());
+					System.out.println("Case 1 has been reached");
+					System.out.println(allCourses());
+					socketOut.println(allCourses());
+					socketOut.flush();
 					break;				
 			//view all taken courses 		
 				case 2: 
@@ -119,6 +122,8 @@ public class BackendServer implements Runnable{
 		
 		for(Student s : studentList) {
 			
+			System.out.println("Student name: " + s.getStudentName());
+			
 			if(s.getStudentId() == id)
 				student = s;
 			
@@ -161,7 +166,7 @@ public class BackendServer implements Runnable{
 		return student;
 	}
 	
-	
+
 	public void addCourseToStudentReg(Registration r) {
 		
 		student.addRegistration(r);
