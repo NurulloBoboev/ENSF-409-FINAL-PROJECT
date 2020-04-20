@@ -81,4 +81,16 @@ public class Course {
 			return offeringList.get(i);
 	}
 
+
+
+	public Course getPreReq() {
+		return preReq;
+	}
+
+
+
+	public void setPreReq(Course preReq) {
+		this.preReq = preReq;
+	}
+
 }
