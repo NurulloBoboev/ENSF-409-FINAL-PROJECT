@@ -35,7 +35,7 @@ public class Student implements Serializable {
 		
 		this.preReqKey = preReqKey;
 		this.registeredCoursesKey = registeredCoursesKey;
-		
+		preReqs = new ArrayList<Course>();
 	}
 	
 	
@@ -74,7 +74,8 @@ public class Student implements Serializable {
 			}
 		}
 		
-		if(preReqMet == true && !studentRegList.contains(registration)) {
+		if(!studentRegList.contains(registration)) {
+			System.out.println("we POGGING boys.");
 			studentRegList.add(registration);
 			DBManager.updateStudentRegistration(this, registration);
 		} else 

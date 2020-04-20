@@ -41,7 +41,6 @@ public class Client {
 			System.exit(1);
 		} 
 		
-			
 	}
 	
 	public void communicateServer() throws ClassNotFoundException, IOException {

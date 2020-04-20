@@ -82,6 +82,7 @@ public class BackendServer implements Runnable{
 			//view registered courses
 				case 3: 
 					socketOut.println(viewRegCourses());
+					socketOut.flush();
 					break;	
 				case 4:
 					String name = socketIn.readLine();
@@ -90,14 +91,18 @@ public class BackendServer implements Runnable{
 					int cNum = Integer.parseInt(num);
 					int sNum = Integer.parseInt(section);
 					Course courseToAdd = catalogue.searchCat(name, cNum);
+					
 					if(courseToAdd == null)
 					{
-						socketOut.println("Sorry, course was not found");
+						socketOut.println("null");
+						socketOut.flush();
 					}
 					else
 					{
+						System.out.println(courseToAdd.getCourseName());
 						registerCourse(courseToAdd, sNum);
 						socketOut.println(viewRegCourses());
+						socketOut.flush();
 					}
 					break;
 				case 5:
@@ -145,7 +150,6 @@ public class BackendServer implements Runnable{
 		CourseOffering theOffering  = c.getCourseOfferingAt(offering);
 		Registration r = new Registration();
 		r.completeRegistration(student, theOffering);
-		addCourseToStudentReg(r);
 	}
 	
 	//view Registered courses
@@ -166,12 +170,6 @@ public class BackendServer implements Runnable{
 		return student;
 	}
 	
-
-	public void addCourseToStudentReg(Registration r) {
-		
-		student.addRegistration(r);
-
-	}
 	
 	
 	@Override

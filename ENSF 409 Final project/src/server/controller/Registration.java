@@ -1,12 +1,18 @@
 
 package server.controller;
 
+import java.io.Serializable;
+
 import server.controller.Student;
 
-public class Registration {
+public class Registration implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Student theStudent;
 	private CourseOffering theOffering;
-	private int grade;
 	
 	public void completeRegistration (Student st, CourseOffering of) {
 		theStudent = st;
@@ -32,19 +38,12 @@ public class Registration {
 	public void setTheOffering(CourseOffering theOffering) {
 		this.theOffering = theOffering;
 	}
-	public int getGrade() {
-		return grade;
-	}
-	public void setGrade(int grade) {
-		this.grade = grade;
-	}
 	
 	@Override
 	public String toString () {
 		String st = "\n";
 		st += "The Offering: " + getTheOffering () + "\n";
-		st += "Grade: " + getGrade();
-		st += "\n-----------\n";
+		st += "\n--------------------------------\n";
 		return st;
 		
 	}

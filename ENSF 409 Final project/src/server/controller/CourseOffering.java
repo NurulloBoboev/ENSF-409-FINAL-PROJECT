@@ -1,7 +1,13 @@
 package server.controller;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CourseOffering {
+public class CourseOffering implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private int secNum;
 	private int secCap;

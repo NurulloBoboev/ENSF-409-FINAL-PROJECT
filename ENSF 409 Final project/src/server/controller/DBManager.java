@@ -197,7 +197,7 @@ public class DBManager {
 			
 			for(Student s: studentList) {
 				tableString = s.getStudentId() + "registeredcourses";
-				ResultSet resultSet = statement.executeQuery("select * from " + tableString);
+				ResultSet resultSet = statement.executeQuery("select * from " + tableString.toUpperCase());
 				
 				while(resultSet.next()) {
 					

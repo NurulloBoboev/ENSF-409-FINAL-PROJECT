@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import client.view.RegisterForCourseFrame;
 import client.view.ServerMessageFrame;
 
@@ -27,9 +30,25 @@ public class RegisterForCourseController {
 				String sec = register.getSecNum().getText();
 				String sendToServer = name+"\n"+num+"\n"+sec;
 				register.getSocketOut().println(sendToServer);
+				
 				try {
+					System.out.println("we out here");
 					String serverMessage = register.getSocketIn().readLine();
-					ServerMessageFrame messageFrame  = new ServerMessageFrame(serverMessage);
+					System.out.println("pogpogpogopgpogpo");
+					
+					if(serverMessage == "null") {
+						JOptionPane.showMessageDialog(new JFrame(), "The following course: " + name
+								+ " " + num + "was not found.");
+						register.getFrame().dispose();
+					}
+					else {
+						JOptionPane.showMessageDialog(new JFrame(), "You have successfully registered in:"
+								+ name + " " + num + " Section " + sec);
+						register.getFrame().dispose();
+					}
+					
+				//	ServerMessageFrame messageFrame  = new ServerMessageFrame(serverMessage);
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
