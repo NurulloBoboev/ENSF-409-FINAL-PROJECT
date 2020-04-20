@@ -80,7 +80,7 @@ public class Student implements Serializable {
 	            preReqMet = true;
 	        }
 		  
-		if(preReqMet == true && !studentRegList.contains(registration) && studentRegList.size() < 6) {
+		if(preReqMet == true && !studentRegList.contains(registration) && studentRegList.size() < 6 && notInCourseYet(registration) == false) {
 			System.out.println("we POGGING boys.");
 			studentRegList.add(registration);
 			DBManager.updateStudentRegistration(this, registration);
@@ -117,6 +117,18 @@ public class Student implements Serializable {
 		
 	}
 	
+	
+	public boolean notInCourseYet(Registration reg) {
+		
+		for (Registration r: studentRegList) {
+			
+			if(r.getTheOffering().getTheCourse().getCourseName().equals(reg.getTheOffering().getTheCourse().getCourseName())) {}
+			return true;
+			
+		}
+		
+		return false;
+	}
 	
 	
 	public int getRegisteredCoursesKey() {
