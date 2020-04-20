@@ -102,23 +102,26 @@ public class BackendServer implements Runnable{
 					}
 					else
 					{
-						boolean TF = registerCourse(courseToAdd, sNum);
-						if(TF) {
+						int truth = registerCourse(courseToAdd, sNum);
+						if(truth == 1) {
 							socketOut.println("success");
 							socketOut.flush();
 						}
-						else if(!TF && student.getPreRegList().size() >= 6){
+						else if(truth == 0 && student.getPreRegList().size() >= 6){
 							socketOut.println("max");
 							socketOut.flush();
 						}
-						else if(!TF) {
+						else if(truth == 0) {
 							System.out.println(student.getPreRegList().size());
 							socketOut.println("fail");
 							socketOut.flush();
 						}
+						else if(truth == 2) {
+							socketOut.println("dupe");
+							socketOut.flush();
+						}
 					}
-					break;
-					
+					break;					
 				case 5:
 					
 			//if none of the cases, just go through loop again looking for some input. 		
@@ -154,7 +157,7 @@ public class BackendServer implements Runnable{
 		
 	//register courses 
 	
-	public boolean registerCourse(Course c, int offering) {
+	public int registerCourse(Course c, int offering) {
 		CourseOffering theOffering  = c.getCourseOffering(offering);
 		Registration r = new Registration();
 		return r.completeRegistration(student, theOffering);
