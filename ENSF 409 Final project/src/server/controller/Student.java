@@ -63,7 +63,27 @@ public class Student implements Serializable {
 
 	public void addRegistration(Registration registration) {
 		// TODO Auto-generated method stub
-		studentRegList.add(registration);
+		
+		
+		//YALL NEED TO DO A POP UP OR ERROR HERE!!!
+		
+		boolean preReqMet = false;
+		
+		
+		for(Course c: preReqs) {
+			if(c.getCourseName().equals(registration.getTheOffering().getTheCourse().getCourseName())) {
+				preReqMet = true;	
+				break;
+			}
+		}
+		
+		if(preReqMet == true) {
+			studentRegList.add(registration);
+		} else 
+			System.out.println("ERROR! Could not add the course. --> ADD AN ERROR SCREEN HERE PLEASE");
+		
+		
+	
 	}
 
 	
