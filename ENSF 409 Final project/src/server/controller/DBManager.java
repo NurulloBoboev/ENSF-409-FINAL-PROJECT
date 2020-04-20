@@ -12,104 +12,51 @@ public class DBManager {
 	ArrayList<Student> studentList; 
 
 	public DBManager () {
-		
 	}
 
-	
-	
-	
-	///
 	public ArrayList<Student> readStudentDataBase(CourseCatalogue theCatalogue) {
 		studentList = new ArrayList<Student>();
-		
 		
 		try {
 			
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
 			Statement statement = connection.createStatement();
-			
-			
 			ResultSet resultSet = statement.executeQuery("select * from student");
 			
-			
-			
-			
-			
 			while(resultSet.next()) {
-				
-				
 				Student st = new Student(resultSet.getNString("name"), resultSet.getInt("id"), resultSet.getInt("prereqkey"), resultSet.getInt("registeredcourseskey"));
-				
-				
 				studentList.add(st);
 			}
 			
-		
-			
-			
-			
 			for(Student s : studentList) {
-				
 				ResultSet resultSetPreReq = statement.executeQuery("select * from " +s.getPreReqKey() +"prereq");
-				
-				
 				ArrayList<Course> preReqCourses = new ArrayList<Course>();
-				
 				while(resultSetPreReq.next()) {
-					
-					//search if course exists and if it does set it. 
+					//search if course exists in the catalogue else it returns a null. 
 					Course course = theCatalogue.searchCat(resultSetPreReq.getString("coursename"), resultSetPreReq.getInt("coursenum"));
-					
 					preReqCourses.add(course);
-					
-				
 				}
-				
-				
 			}
-			
-			
-			
-			
+
 		} catch(Exception e) {
-			e.printStackTrace();
-			
+			e.printStackTrace();			
 		}
-		
 		setStudentRegisterdCourses(theCatalogue);
-		
 		return studentList;
-		
 	}
 	
-	
-	
-	//READ ALL COURSES IN FIRST. -> THEN CAN ESSTABLISH THE STUDENT INFO BECASUE THE COURSES NOW EXIST IN THE CATALOGUE SO I CAN 
-	// SEARCH FOR THEM AND ASSIGN THE OBJECT WHICH HAS ALREADY BEEN CONSTRUCTED
-	
-	
-	
 	public ArrayList readFromDataBase() {
-		
 		courseList = new ArrayList<Course>();
 		
 		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery("select * from allcourses");
 		
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
-		Statement statement = connection.createStatement();
-		
-		
-		
-		ResultSet resultSet = statement.executeQuery("select * from allcourses");
-		
-		
-		while(resultSet.next()) {
-			
-			Course c = new Course(resultSet.getString("coursename"), resultSet.getInt("coursenum"), resultSet.getString("preReqName"), resultSet.getInt("preReqNum"));
-			courseList.add(c);
-			
-		}
-		
+			while(resultSet.next()) {
+				Course c = new Course(resultSet.getString("coursename"), resultSet.getInt("coursenum"), resultSet.getString("preReqName"), resultSet.getInt("preReqNum"));
+				courseList.add(c);		
+			}
 		connection.close();
 		
 		} catch(Exception e) {
@@ -117,46 +64,35 @@ public class DBManager {
 		}
 		
 		updateCourseOfferings();
-		
 		return courseList;
 	}
 	
-	
-	public void updateCourseOfferings() {
-		
-		
-	
+	//sets pre req data in a course to a pre req that now exists in the course catalogue
+	public void updateCourseOfferings() { 
 			try {
 				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
 				Statement statement = connection.createStatement();
 				
 				for(Course c: courseList) {
-				
 					String selectFrom = c.getCourseName().toLowerCase() + c.getCourseNum() + "offerings";
-					
 					ResultSet resultSet = statement.executeQuery("select * from " + selectFrom);
-				
+	
 					while(resultSet.next()) {
 						CourseOffering offering = new CourseOffering(resultSet.getInt("secnum"), resultSet.getInt("seccap"));
 						c.addOffering(offering);
-					}
-				
+					}		
 				}
+				
 				connection.close();
-				
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
 	}
 	
-	
-	
-	//made static such that a new DBManager object does not need to be constructed each time a 
+	//this method is made static such that a new DBManager object does not need to be constructed each time a 
 	//student wants to update their registration
 	public static void updateStudentRegistration(Student s, Registration r) {
-		
 		String tableName = s.getStudentId() + "registeredcourses";
 		
 		try {
@@ -170,28 +106,22 @@ public class DBManager {
         					 "VALUES ('" + r.getTheOffering().getTheCourse().getCourseName() + "', " + 
         		    		r.getTheOffering().getTheCourse().getCourseNum() + ", " + r.getTheOffering().getSecNum() + ", " +
         					 r.getTheOffering().getSecCap() +")";
-        		    
+        	
         	    statement.executeUpdate(sql);
         	    connection.close();
                      
-       
-			
 		} catch (Exception e) {
-			e.printStackTrace();
-			
+			e.printStackTrace();	
 		}
-		
 		
 	}
 	
-	//made static such that a new DBManager object does not need to be constructed each time a 
-	//student wants to view registration data
-	
+	//reads from the database the courses that a student has registerd for, and sets that to the student objects registered courses 
+	//array list of courses
 	public void setStudentRegisterdCourses(CourseCatalogue theCatalogue) {
 		String tableString = "";
 		
 		try {
-		
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
 			Statement statement = connection.createStatement();	
 			
@@ -199,11 +129,9 @@ public class DBManager {
 				tableString = s.getStudentId() + "registeredcourses";
 				ResultSet resultSet = statement.executeQuery("select * from " + tableString.toUpperCase());
 				
-				while(resultSet.next()) {
-					
+				while(resultSet.next()) {		
 					//search for course in course catalog and add it to the students registered courses if it exists. 
 					Course c = theCatalogue.searchCat(resultSet.getString("coursename"), resultSet.getInt("coursenum"));
-					
 					//now traverse through the courses offerings to see if it matches an existing offering
 					for(CourseOffering o: c.getCourseOfferings()) {
 						//if the offering exists then add it to the student 
@@ -213,19 +141,15 @@ public class DBManager {
 							r.setTheStudent(s);
 							s.updateRegistration(r);
 						}
-						
 					}
-					
 				}
-			
 			}
 		
 			connection.close();
-			
+
 		}catch(Exception e) {
 			e.printStackTrace();
-		}
-		
+		}		
 		
 	}
 	
