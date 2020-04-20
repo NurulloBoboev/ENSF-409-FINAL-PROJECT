@@ -102,22 +102,18 @@ public class BackendServer implements Runnable{
 					}
 					else
 					{
-						int truth = registerCourse(courseToAdd, sNum);
-						if(truth == 1) {
+						boolean TF = registerCourse(courseToAdd, sNum);
+						if(TF) {
 							socketOut.println("success");
 							socketOut.flush();
 						}
-						else if(truth == 0 && student.getPreRegList().size() >= 6){
+						else if(!TF && student.getPreRegList().size() >= 6){
 							socketOut.println("max");
 							socketOut.flush();
 						}
-						else if(truth == 0) {
+						else if(!TF) {
 							System.out.println(student.getPreRegList().size());
 							socketOut.println("fail");
-							socketOut.flush();
-						}
-						else if(truth == 2) {
-							socketOut.println("dupe");
 							socketOut.flush();
 						}
 					}
@@ -158,7 +154,7 @@ public class BackendServer implements Runnable{
 		
 	//register courses 
 	
-	public int registerCourse(Course c, int offering) {
+	public boolean registerCourse(Course c, int offering) {
 		CourseOffering theOffering  = c.getCourseOffering(offering);
 		Registration r = new Registration();
 		return r.completeRegistration(student, theOffering);
