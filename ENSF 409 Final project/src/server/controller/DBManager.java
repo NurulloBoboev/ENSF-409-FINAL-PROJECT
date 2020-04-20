@@ -41,8 +41,16 @@ public class DBManager {
 				Student st = new Student(resultSet.getNString("name"), resultSet.getInt("id"), resultSet.getInt("prereqkey"), resultSet.getInt("registeredcourseskey"));
 				
 				
+				studentList.add(st);
+			}
+			
+		
+			
+			
+			
+			for(Student s : studentList) {
 				
-				ResultSet resultSetPreReq = statement.executeQuery("select * from " +st.getPreReqKey() +"prereq");
+				ResultSet resultSetPreReq = statement.executeQuery("select * from " +s.getPreReqKey() +"prereq");
 				
 				
 				ArrayList<Course> preReqCourses = new ArrayList<Course>();
@@ -50,20 +58,12 @@ public class DBManager {
 				while(resultSetPreReq.next()) {
 					
 					//search if course exists and if it does set it. 
-					
-					
 					Course course = theCatalogue.searchCat(resultSetPreReq.getString("coursename"), resultSetPreReq.getInt("coursenum"));
 					
 					preReqCourses.add(course);
 					
 				
-					
 				}
-				
-				
-				studentList.add(st);
-				
-				
 				
 				
 			}
