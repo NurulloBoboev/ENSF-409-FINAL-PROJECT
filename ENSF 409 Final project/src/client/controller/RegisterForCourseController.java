@@ -47,11 +47,6 @@ public class RegisterForCourseController {
 								+ name + " " + num + " Section " + sec);
 						register.getFrame().dispose();
 					}
-					else if(serverMessage.equals("max")){
-						JOptionPane.showMessageDialog(new JFrame(), "Course found but not added because you have exceeded"
-								+ " the maximum number of registered courses.");
-						register.getFrame().dispose();
-					}
 					else if(serverMessage.equals("fail")){
 						System.out.println(serverMessage);
 						JOptionPane.showMessageDialog(new JFrame(), "Course found, but you have not met the "
