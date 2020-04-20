@@ -36,14 +36,21 @@ public class RegisterForCourseController {
 					String serverMessage = register.getSocketIn().readLine();
 					System.out.println("pogpogpogopgpogpo");
 					
-					if(serverMessage == "null") {
+					if(serverMessage.equals("null")) {
 						JOptionPane.showMessageDialog(new JFrame(), "The following course: " + name
 								+ " " + num + "was not found.");
 						register.getFrame().dispose();
 					}
-					else {
-						JOptionPane.showMessageDialog(new JFrame(), "You have successfully registered in:"
+					else if(serverMessage.equals("success")){
+						System.out.println(serverMessage);
+						JOptionPane.showMessageDialog(new JFrame(), "You have successfully registered in: "
 								+ name + " " + num + " Section " + sec);
+						register.getFrame().dispose();
+					}
+					else if(serverMessage.equals("fail")){
+						System.out.println(serverMessage);
+						JOptionPane.showMessageDialog(new JFrame(), "Course found, but you have not met the "
+								+ "requirements for the course.");
 						register.getFrame().dispose();
 					}
 					

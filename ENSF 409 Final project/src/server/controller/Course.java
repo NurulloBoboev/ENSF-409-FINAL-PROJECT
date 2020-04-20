@@ -80,15 +80,6 @@ public class Course implements Serializable{
 		return st;
 	}
 
-	public CourseOffering getCourseOfferingAt(int i) {
-		// TODO Auto-generated method stub
-		if (i < 0 || i >= offeringList.size() )
-			return null;
-		else
-			return offeringList.get(i);
-	}
-
-
 	public ArrayList<CourseOffering> getCourseOfferings() {
 		return offeringList;
 	}
@@ -104,5 +95,16 @@ public class Course implements Serializable{
 		this.preReq = preReq;
 	}
 
+	public CourseOffering getCourseOffering(int i) {
+
+        for(CourseOffering o: offeringList) {
+            
+            if(o.getSecNum() == i) {
+                return o;
+            }
+            
+        }
+              return null;
+    }
 }
 

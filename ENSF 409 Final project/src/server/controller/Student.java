@@ -61,25 +61,34 @@ public class Student implements Serializable {
 		return st;
 	}
 
-	public void addRegistration(Registration registration) {
+	public boolean addRegistration(Registration registration) {
 		// TODO Auto-generated method stub	
 		//YALL NEED TO DO A POP UP OR ERROR HERE!!!
 		
 		boolean preReqMet = false;
     
-		for(Course c: preReqs) {
-			if(c.getCourseName().equals(registration.getTheOffering().getTheCourse().getCourseName())) {
-				preReqMet = true;	
-				break;
-			}
-		}
+		if(registration.getTheOffering().getTheCourse().getPreReq() != null) {
+            for(Course c: preReqs) {
+                if(c.getCourseName().equals(registration.getTheOffering().getTheCourse().getPreReq().getCourseName())) {
+                    preReqMet = true;    
+                    break;
+                }
+            }
+        }
 		
-		if(!studentRegList.contains(registration)) {
+		if(registration.getTheOffering().getTheCourse().getPreReq() == null) {
+	            preReqMet = true;
+	        }
+		  
+		if(preReqMet == true && !studentRegList.contains(registration)) {
 			System.out.println("we POGGING boys.");
 			studentRegList.add(registration);
 			DBManager.updateStudentRegistration(this, registration);
-		} else 
+			return true;
+		} else {
 			System.out.println("ERROR! Could not add the course. --> ADD AN ERROR SCREEN HERE PLEASE");
+			return false;
+		}
 	}
 
 	//ONLY FOR ADDING FROM THE DATABASE
