@@ -1,5 +1,6 @@
 package client.controller;
 
+import client.view.LogoutFrame;
 import client.view.MenuFrame;
 
 import client.view.RegisterForCourseFrame;
@@ -64,8 +65,9 @@ public class MenuFrameController {
 		frame.getLogoutBut().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.getSocketOut().println("5");
-				frame.getSocketOut().flush();
+				LogoutFrame logout = new LogoutFrame(frame);
+				logout.display();
+				frame.getFrame().dispose();
 			}
 		});
 	}
