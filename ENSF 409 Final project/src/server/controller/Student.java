@@ -147,5 +147,8 @@ public class Student implements Serializable {
 		
 	}
 	
+	public ArrayList<Registration> getPreRegList(){
+		return studentRegList;
+	}
 	
 }

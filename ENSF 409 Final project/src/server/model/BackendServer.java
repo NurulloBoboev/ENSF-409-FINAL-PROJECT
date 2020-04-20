@@ -102,11 +102,17 @@ public class BackendServer implements Runnable{
 					}
 					else
 					{
-						if(registerCourse(courseToAdd, sNum)) {
+						boolean TF = registerCourse(courseToAdd, sNum);
+						if(TF) {
 							socketOut.println("success");
 							socketOut.flush();
 						}
-						else {
+						else if(!TF && student.getPreRegList().size() >= 6){
+							socketOut.println("max");
+							socketOut.flush();
+						}
+						else if(!TF) {
+							System.out.println(student.getPreRegList().size());
 							socketOut.println("fail");
 							socketOut.flush();
 						}
@@ -115,16 +121,12 @@ public class BackendServer implements Runnable{
 					
 				case 5:
 					
-					
-					
-					
 			//if none of the cases, just go through loop again looking for some input. 		
 				default: 
 					continue;						
 			}
 			
 		} while(true);
-		
 		
 	}
 	//login
@@ -140,7 +142,6 @@ public class BackendServer implements Runnable{
 			if(s.getStudentId() == id)
 				student = s;
 		}
-		
 	}
 		
 	//views course
@@ -176,7 +177,6 @@ public class BackendServer implements Runnable{
 	public Student getStudent() {
 		return student;
 	}
-	
 	
 	
 	@Override
