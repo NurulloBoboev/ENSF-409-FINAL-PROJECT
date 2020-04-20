@@ -21,10 +21,10 @@ public class Course {
 
 	
 	
-	public Course(String courseName, int CourseNum, String preReqName, int preReqNum) {
+	public Course(String courseName, int courseNum, String preReqName, int preReqNum) {
 		
 		this.setCourseName(courseName);
-		this.setCourseNum(CourseNum);
+		this.setCourseNum(courseNum);
 		// Both of the following are only association
 		offeringList = new ArrayList<CourseOffering>();
 		
