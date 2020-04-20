@@ -46,6 +46,7 @@ private JButton backBut = new JButton("Back to menu");
 		//Create scrolling pane to view courses
 		JTextArea textArea = new JTextArea(allcourses);
 		JScrollPane scrollPane = new JScrollPane(textArea);
+		textArea.setEditable(false);
 		
 		JPanel buttons = new JPanel(new FlowLayout());
 		buttons.add(backBut);
