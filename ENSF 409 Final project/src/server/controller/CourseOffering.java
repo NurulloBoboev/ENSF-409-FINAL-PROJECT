@@ -43,6 +43,7 @@ public class CourseOffering {
 	public void addRegistration(Registration registration) {
 		// TODO Auto-generated method stub
 		offeringRegList.add(registration);
+		secCap--;
 		
 	}
 	
