@@ -132,24 +132,22 @@ public class DBManager {
 				for(Course c: courseList) {
 				
 					String selectFrom = c.getCourseName().toLowerCase() + c.getCourseNum() + "offerings";
-				
+					
 					ResultSet resultSet = statement.executeQuery("select * from " + selectFrom);
 				
 					while(resultSet.next()) {
-					
-						CourseOffering offering = new CourseOffering(c, resultSet.getInt("secnum"), resultSet.getInt("seccap"));
+						CourseOffering offering = new CourseOffering(resultSet.getInt("secnum"), resultSet.getInt("seccap"));
 						c.addOffering(offering);
 					}
 				
 				}
 				connection.close();
 				
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		
-		
+
 	}
 	
 	

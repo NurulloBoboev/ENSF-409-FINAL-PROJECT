@@ -69,7 +69,7 @@ public class Course {
 		st += getCourseName() + " " + getCourseNum ();
 		st += "\nAll course sections:\n";
 		for (CourseOffering c : offeringList)
-			st += c;
+			st += c.toString();
 		st += "\n-------------------------------------\n";
 		return st;
 	}
@@ -83,6 +83,10 @@ public class Course {
 	}
 
 
+	public ArrayList<CourseOffering> getCourseOfferings() {
+		return offeringList;
+	}
+	
 
 	public Course getPreReq() {
 		return preReq;
