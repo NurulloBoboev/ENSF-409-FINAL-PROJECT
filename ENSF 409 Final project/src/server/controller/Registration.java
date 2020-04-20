@@ -1,3 +1,4 @@
+
 package server.controller;
 
 import server.controller.Student;
@@ -51,3 +52,4 @@ public class Registration {
 	
 
 }
+

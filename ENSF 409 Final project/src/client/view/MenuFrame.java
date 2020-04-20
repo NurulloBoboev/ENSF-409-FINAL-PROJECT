@@ -95,9 +95,10 @@ public class MenuFrame extends GUI{
 		
 		frame.add("South", buttons);
 		frame.setVisible(true);
-		
+
 		MenuFrameController controller = new MenuFrameController(this);
-		controller.runController();
+        controller.runController();
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
@@ -106,6 +107,8 @@ public class MenuFrame extends GUI{
 		MenuFrame mf = new MenuFrame();
 		mf.displayFrame();
 		
-	} */
+
+	}*/
+
 	
 }

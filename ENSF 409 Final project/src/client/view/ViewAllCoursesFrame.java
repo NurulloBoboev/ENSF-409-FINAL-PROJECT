@@ -47,11 +47,12 @@ public class ViewAllCoursesFrame extends GUI{
 		buttons.add(backBut);
 		
 		frame.setLayout(new BorderLayout());
-		frame.setSize(900,900);
+		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/4,Toolkit.getDefaultToolkit().getScreenSize().height/4);
 		frame.add(scrollPane);
 		
 		frame.add("North", label);
 		frame.add("South", buttons);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
 		ViewAllCoursesController controller = new ViewAllCoursesController(this);

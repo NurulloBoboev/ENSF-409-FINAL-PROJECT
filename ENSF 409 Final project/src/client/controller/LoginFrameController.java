@@ -25,11 +25,6 @@ public class LoginFrameController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println("did we crash?");
-				
-
-				
-				System.out.println("we didn't crash");
 				
 				if(frame.getUserID().getText().isEmpty() || Pattern.matches("[a-zA-Z]+", frame.getUserID().getText()) || frame.getUserID().getText().length() != 5){
 					JOptionPane.showMessageDialog(new JFrame(), "Incorrect input for Student ID. Please enter a 5 digit ID");

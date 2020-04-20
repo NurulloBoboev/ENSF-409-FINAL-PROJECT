@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutorService;
 
 import server.controller.Course;
 import server.controller.CourseCatalogue;
+import server.controller.CourseOffering;
 import server.controller.DBManager;
 import server.controller.Registration;
 import server.controller.Student;
@@ -81,7 +82,29 @@ public class BackendServer implements Runnable{
 			//view registered courses
 				case 3: 
 					socketOut.println(viewRegCourses());
-					break;					
+					break;	
+				case 4:
+					String name = socketIn.readLine();
+					String num = socketIn.readLine();
+					String section = socketIn.readLine();
+					int cNum = Integer.parseInt(num);
+					int sNum = Integer.parseInt(section);
+					Course courseToAdd = catalogue.searchCat(name, cNum);
+					if(courseToAdd == null)
+					{
+						socketOut.println("Sorry, course was not found");
+					}
+					else
+					{
+						registerCourse(courseToAdd, sNum);
+						socketOut.println(viewRegCourses());
+					}
+					break;
+				case 5:
+					
+					
+					
+					
 			//if none of the cases, just go through loop again looking for some input. 		
 				default: 
 					continue;						
@@ -118,11 +141,11 @@ public class BackendServer implements Runnable{
 		
 	//register courses 
 	
-	public void registerCourse(Course c) {
-		
+	public void registerCourse(Course c, int offering) {
+		CourseOffering theOffering  = c.getCourseOfferingAt(offering);
 		Registration r = new Registration();
-		r.completeRegistration(student, c.getCourseOfferingAt(0));
-				
+		r.completeRegistration(student, theOffering);
+		addCourseToStudentReg(r);
 	}
 	
 	//view Registered courses
@@ -143,10 +166,13 @@ public class BackendServer implements Runnable{
 		return student;
 	}
 	
-	
-	public void addCourseToStudentReg(String courseName, int secNum) {
+
+	public void addCourseToStudentReg(Registration r) {
 		
+		student.addRegistration(r);
+
 	}
+	
 	
 	@Override
 	public void run() {

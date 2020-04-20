@@ -1,3 +1,4 @@
+
 package server.controller;
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class Course {
 	public Course(String courseName, int courseNum, String preReqName, int preReqNum) {
 		
 		this.setCourseName(courseName);
-		this.setCourseNum(courseNum);
+		this.setCourseNum(CourseNum);
 		// Both of the following are only association
 		offeringList = new ArrayList<CourseOffering>();
 		
@@ -94,3 +95,4 @@ public class Course {
 	}
 
 }
+
