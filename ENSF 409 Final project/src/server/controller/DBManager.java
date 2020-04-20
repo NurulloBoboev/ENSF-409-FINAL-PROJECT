@@ -88,7 +88,7 @@ public class DBManager {
 	
 	
 	
-	public ArrayList readFromDataBaseData() {
+	public ArrayList readFromDataBase() {
 		
 		courseList = new ArrayList<Course>();
 		
@@ -125,40 +125,5 @@ public class DBManager {
 	}
 	
 	
-	public ArrayList readFromDataBase() {
-		
-		courseList = new ArrayList<Course>();
-		
-		Scanner textFileInputs = null; 
-		
-		String className;
-		int classNum;
-		
-		//read from a basic dummy text file containing student names, numbers, etc. 
-		try {
-			textFileInputs = new Scanner(new File("CourseList.txt"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		while(textFileInputs.hasNextLine()) {
-			
-			className = textFileInputs.next();
-			classNum = Integer.parseInt(textFileInputs.next());
-		
-			
-			Course c = new Course(className, classNum);
-			
-			courseList.add(c);
-			
-			
-		}
-		
-	
-		return courseList;
-	}
 
 }
