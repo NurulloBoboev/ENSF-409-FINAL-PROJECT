@@ -62,8 +62,12 @@ public class Student implements Serializable {
 	}
 
 	public void addRegistration(Registration registration) {
-		// TODO Auto-generated method stub
 		studentRegList.add(registration);
+		System.out.println("Course successfully added!\n------------\n");
+		for(int i = 0; i < studentRegList.size(); i++)
+		{
+			System.out.println(studentRegList.get(i).toString());
+		}
 	}
 
 	
