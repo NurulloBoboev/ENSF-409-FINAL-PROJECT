@@ -34,7 +34,7 @@ public class BackendServer implements Runnable{
 		
 		catalogue = new CourseCatalogue();
 		DBManager db = new DBManager();
-		studentList = db.readStudentDataBase();
+		studentList = db.readStudentDataBase(catalogue);
 	}
 	
 	public void communicateWithClient() throws NumberFormatException, IOException{
