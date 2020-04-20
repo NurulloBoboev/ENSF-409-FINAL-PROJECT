@@ -5,7 +5,7 @@ import server.controller.Student;
 public class Registration {
 	private Student theStudent;
 	private CourseOffering theOffering;
-	private char grade;
+	private int grade;
 	
 	public void completeRegistration (Student st, CourseOffering of) {
 		theStudent = st;
@@ -31,10 +31,10 @@ public class Registration {
 	public void setTheOffering(CourseOffering theOffering) {
 		this.theOffering = theOffering;
 	}
-	public char getGrade() {
+	public int getGrade() {
 		return grade;
 	}
-	public void setGrade(char grade) {
+	public void setGrade(int grade) {
 		this.grade = grade;
 	}
 	
