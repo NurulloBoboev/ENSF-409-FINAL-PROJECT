@@ -71,8 +71,8 @@ public class BackendServer implements Runnable{
 			//display all courses on catalogue
 				case 1:
 					System.out.println("Case 1 has been reached");
-					System.out.println(allCourses());
-					socketOut.println(allCourses());
+					String allCoursesString = allCourses();
+					socketOut.println(allCoursesString);
 					socketOut.flush();
 					break;				
 			//view all taken courses 		

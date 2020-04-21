@@ -49,7 +49,7 @@ public class ViewAllCoursesFrame extends GUI{
 	public void displayFrame() throws IOException {
 		System.out.println("View frame waiting for server input");
 	
-		while(socketIn.ready())
+		while(socketIn.ready()) 
 			allcourses+="\n"+socketIn.readLine();
 		
 		

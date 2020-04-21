@@ -100,7 +100,14 @@ public class Student implements Serializable {
 	
 	public String viewRegisterdCourses() {
 		
-		return studentRegList.toString();
+		String s = "";
+		
+		for (Registration r: studentRegList) {
+			s+= r.toString();
+			
+		}
+		
+		return s;
 		
 	}
 

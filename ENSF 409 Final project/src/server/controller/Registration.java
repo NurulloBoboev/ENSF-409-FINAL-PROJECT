@@ -44,7 +44,7 @@ public class Registration implements Serializable{
 	@Override
 	public String toString () {
 		String st = "\n";
-		st += "The Offering: " + getTheOffering () + "\n";
+		st += getTheOffering();
 		st += "\n--------------------------------\n";
 		return st;
 		
