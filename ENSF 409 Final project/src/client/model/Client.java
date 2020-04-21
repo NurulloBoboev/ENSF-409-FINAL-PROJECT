@@ -70,7 +70,7 @@ public class Client {
 	 * @throws IOException relevant exception
 	 */
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
-		Client client = new Client("localhost", 1000);
+		Client client = new Client("70.73.66.216", 1000);
 		client.communicateServer();
 
 	}
