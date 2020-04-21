@@ -28,12 +28,12 @@ public class RegisterForCourseFrame extends MenuFrame {
 
 	private JButton addCourseBut = new JButton("Register");
 	private JButton cancelBut = new JButton("Cancel");
-	private JTextField courseName = new JTextField();
-	private JTextField courseNum = new JTextField();
-	private JTextField secNum = new JTextField();
-	private JLabel cName = new JLabel("Course Name: ");
-	private JLabel cNum = new JLabel("	Course Number: ");
-	private JLabel sNum = new JLabel("	Section:");
+	private JTextField courseName = new JTextField(14);
+	private JTextField courseNum = new JTextField(14);
+	private JTextField secNum = new JTextField(14);
+	private JLabel cName = new JLabel("Course Name:");
+	private JLabel cNum = new JLabel("Course Number:");
+	private JLabel sNum = new JLabel("Section:");
 	
 	public JTextField getSecNum() {
 		return secNum;
@@ -58,39 +58,40 @@ public class RegisterForCourseFrame extends MenuFrame {
 	@Override
 	public void displayFrame()
 	{
-		int h = 50;
-		int w = 20;
 		frame = new JFrame("Register for Course");
 		frame.setLayout(new BorderLayout());
-		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/4,Toolkit.getDefaultToolkit().getScreenSize().height/4);
-		frame.setLocationRelativeTo(null);
-		
-		
-		cName.setPreferredSize(new Dimension(85, 20));
-		cNum.setPreferredSize(new Dimension(100, 20));
-		sNum.setPreferredSize(new Dimension(55, 20));
-		courseName.setPreferredSize(new Dimension(80, 20));
-		courseNum.setPreferredSize(new Dimension(80, 20));
-		secNum.setPreferredSize(new Dimension(40, 20));
-		
+		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/5,Toolkit.getDefaultToolkit().getScreenSize().height/6);
+		frame.setLocationRelativeTo(null);	
 	
 		JPanel buttons = new JPanel(new FlowLayout());
 		buttons.add(addCourseBut);
 		buttons.add(cancelBut);
-		JPanel textName = new JPanel(new FlowLayout());
-		//JPanel textNum = new JPanel(new FlowLayout());
-		//JPanel textSec = new JPanel(new FlowLayout());
-		textName.add(cName);
-		textName.add(courseName);
-		textName.add(cNum);
-		textName.add(courseNum);
-		textName.add(sNum);
-		textName.add(secNum);
 		
+		JPanel textName = new JPanel(new FlowLayout());
+		JPanel textNum = new JPanel(new FlowLayout());
+		JPanel textSec = new JPanel(new FlowLayout());
+		
+		JPanel textFields = new JPanel(new GridLayout(3,2, 0, 3));
+
+		cName.setHorizontalAlignment(JLabel.RIGHT);
+		cNum.setHorizontalAlignment(JLabel.RIGHT);
+		sNum.setHorizontalAlignment(JLabel.RIGHT);
+		courseName.setHorizontalAlignment(JTextField.LEFT);
+		
+		textFields.add(cName);
+		textName.add(courseName);
+		textFields.add(textName);
+		
+		textFields.add(cNum);
+		textNum.add(courseNum);
+		textFields.add(textNum);
+		
+		textFields.add(sNum);
+		textSec.add(secNum);
+		textFields.add(textSec);
 		frame.add("South", buttons);
-		frame.add(textName);
-		//frame.add(textNum);
-		//frame.add(textSec);
+		frame.add("West", textFields);
+
 		frame.setVisible(true);
 		RegisterForCourseController controller = new RegisterForCourseController(this);
         controller.runController();
