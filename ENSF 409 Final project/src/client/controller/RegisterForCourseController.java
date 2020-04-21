@@ -36,7 +36,7 @@ public class RegisterForCourseController {
 				else if(num.isEmpty() || Pattern.matches("[a-zA-Z]+", num) || num.length() != 3) {
 					JOptionPane.showMessageDialog(new JFrame(), "Incorrect input for Course Number. Please enter a 3 digit Course Number");
 				}
-				else if(sec.isEmpty() || Pattern.matches("[a-zA-Z]+", sec) || sec.length() != 1) {
+				else if(sec.isEmpty() || Pattern.matches("[a-zA-Z]+", sec) || sec.length() != 1 || !sec.equals("1") || !sec.equals("2")) {
 					JOptionPane.showMessageDialog(new JFrame(), "Incorrect input for Section. Please enter a 1 digit Section Number.");
 				}
 				else {
