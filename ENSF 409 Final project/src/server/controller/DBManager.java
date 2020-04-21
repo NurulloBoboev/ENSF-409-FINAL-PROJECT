@@ -10,14 +10,8 @@ public class DBManager {
 	
 	ArrayList <Course> courseList;
 	ArrayList<Student> studentList; 
-	String sqlUserName;
-	String sqlPass;
-	String sqlSchema;
 
-	public DBManager (String sqlUserName, String sqlPass, String sqlSchema) {
-		this.sqlUserName = sqlUserName;
-		this.sqlPass = sqlPass;
-		this.sqlSchema = sqlSchema;
+	public DBManager () {
 		
 	}
 
@@ -31,7 +25,7 @@ public class DBManager {
 		
 		try {
 			
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlSchema, sqlUserName, sqlPass);
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
 			Statement statement = connection.createStatement();
 			
 			
@@ -101,7 +95,7 @@ public class DBManager {
 		
 		try {
 		
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlSchema, sqlUserName, sqlPass);
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
 		Statement statement = connection.createStatement();
 		
 		
@@ -133,7 +127,7 @@ public class DBManager {
 		
 	
 			try {
-				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlSchema, sqlUserName, sqlPass);
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
 				Statement statement = connection.createStatement();
 				
 				for(Course c: courseList) {
@@ -159,48 +153,6 @@ public class DBManager {
 	
 	
 	
-	public String getSqlUserName() {
-		return sqlUserName;
-	}
-
-
-
-
-	public void setSqlUserName(String sqlUserName) {
-		this.sqlUserName = sqlUserName;
-	}
-
-
-
-
-	public String getSqlPass() {
-		return sqlPass;
-	}
-
-
-
-
-	public void setSqlPass(String sqlPass) {
-		this.sqlPass = sqlPass;
-	}
-
-
-
-
-	public String getSqlSchema() {
-		return sqlSchema;
-	}
-
-
-
-
-	public void setSqlSchema(String sqlSchema) {
-		this.sqlSchema = sqlSchema;
-	}
-
-
-
-
 	//made static such that a new DBManager object does not need to be constructed each time a 
 	//student wants to update their registration
 	public static void updateStudentRegistration(Student s, Registration r) {
@@ -208,7 +160,7 @@ public class DBManager {
 		String tableName = s.getStudentId() + "registeredcourses";
 		
 		try {
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + getSqlSchema(), sqlUserName, sqlPass);
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
 			Statement statement = connection.createStatement();
 			java.sql.DatabaseMetaData dbm = connection.getMetaData();
             ResultSet rs = dbm.getTables(null, null, tableName, null);
@@ -240,7 +192,7 @@ public class DBManager {
 		
 		try {
 		
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlSchema, sqlUserName, sqlPass);
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "poggers");
 			Statement statement = connection.createStatement();	
 			
 			for(Student s: studentList) {

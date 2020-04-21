@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,10 +28,6 @@ public class Server {
 	private BufferedReader socketIn; 
 	private PrintWriter socketOut;
 	private ObjectOutputStream objectOut;
-	
-	private String sqlUserName;
-	private String sqlPass;
-	private String sqlSchema;
 	
 	BackendServer theBackend;
 	
@@ -59,7 +54,7 @@ public class Server {
 			socketOut = new PrintWriter(aSocket.getOutputStream());
 			objectOut = new ObjectOutputStream(aSocket.getOutputStream());
 			
-			BackendServer backend = new BackendServer(aSocket, socketIn, socketOut, objectOut, sqlUserName, sqlPass, sqlSchema);
+			BackendServer backend = new BackendServer(aSocket, socketIn, socketOut, objectOut);
 			pool.execute(backend);
 			
 			}
@@ -72,27 +67,8 @@ public class Server {
 		}
 	}
 
-	public static void getSQLInformation(){
-		Scanner sc = new Scanner(System.in);		
-		
-		System.out.println("What is your sql username?");		
-		String sqlUserName = sc.nextLine();
-		
-		
-		System.out.println("What is your sql password?");		
-		String sqlPass = sc.nextLine();
-		
-		System.out.println("What is your sql schema name?");
-		String sqlSchema = sc.nextLine();
-		
-		sc.close();
-		
-	}
-	
 	public static void main(String[] args) 
 	{
-		getSQLInformation();
-		
 		Server server = new Server(1000);
 		System.out.println("Server is now running!");
 		try 
