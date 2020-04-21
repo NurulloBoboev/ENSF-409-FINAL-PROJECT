@@ -36,7 +36,6 @@ public class Client {
 			objectIn = new ObjectInputStream(aSocket.getInputStream());
 				
 		} catch(IOException e) {
-			e.printStackTrace();
 			JOptionPane.showMessageDialog(new JFrame(), "Could not connect to server. Please try again.");
 			System.exit(1);
 		} 

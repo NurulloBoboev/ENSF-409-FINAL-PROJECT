@@ -3,6 +3,7 @@ package client.controller;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -28,6 +29,17 @@ public class RegisterForCourseController {
 				String name = register.getCourseName().getText();
 				String num = register.getCourseNum().getText();
 				String sec = register.getSecNum().getText();
+				
+				if(name.isEmpty() || !Pattern.matches("[a-zA-Z]+", name)) {
+					JOptionPane.showMessageDialog(new JFrame(), "Incorrect Course Name. Please enter a proper 4 character acronym.");
+				}
+				else if(num.isEmpty() || Pattern.matches("[a-zA-Z]+", num) || num.length() != 3) {
+					JOptionPane.showMessageDialog(new JFrame(), "Incorrect input for Course Number. Please enter a 3 digit Course Number");
+				}
+				else if(sec.isEmpty() || Pattern.matches("[a-zA-Z]+", sec) || sec.length() != 1) {
+					JOptionPane.showMessageDialog(new JFrame(), "Incorrect input for Section. Please enter a 1 digit Section Number.");
+				}
+				else {
 				String sendToServer = name+"\n"+num+"\n"+sec;
 				register.getSocketOut().println(sendToServer);
 				
@@ -70,6 +82,7 @@ public class RegisterForCourseController {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+			  }
 				
 			}
 		});

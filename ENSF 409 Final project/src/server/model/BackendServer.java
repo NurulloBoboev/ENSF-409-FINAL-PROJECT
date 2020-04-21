@@ -191,7 +191,7 @@ public class BackendServer implements Runnable{
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Client closed the connection.");
 		}
 	}
 	
