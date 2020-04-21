@@ -25,6 +25,11 @@ public class Client {
 	private BufferedReader socketIn;
 	private ObjectInputStream objectIn;
 	
+	/**
+	 * Constructor for the client class, initializes most private variables
+	 * @param serverName is the name of the server to be connected to the socket
+	 * @param portNum is the port number to be connected to the socket
+	 */
 	public Client(String serverName, int portNum) {
 		
 		try {
@@ -42,6 +47,12 @@ public class Client {
 		
 	}
 	
+	/**
+	 * communicateServer() initializes the GUI to which the program will be run from, and 
+	 * passes socket information/ object stream information from its communication with server
+	 * @throws ClassNotFoundException relevant exception
+	 * @throws IOException relevant exception
+	 */
 	public void communicateServer() throws ClassNotFoundException, IOException {
 		
 		// Do socket work here to connect to the server and send info back and forth.
@@ -52,6 +63,12 @@ public class Client {
 		
 	}
 		
+	/**
+	 * main function of client, is called with the startup of a new client connection
+	 * @param args not used
+	 * @throws ClassNotFoundException relevant exception
+	 * @throws IOException relevant exception
+	 */
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		Client client = new Client("localhost", 1000);
 		client.communicateServer();
