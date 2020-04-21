@@ -19,7 +19,16 @@ public class RegisterForCourseFrame extends MenuFrame {
 		
 	}
 	
-	
+	/**
+	 * Constructor for class RegisterForFrame, which initializes server communication variables from the 
+	 * MenuFrame (although it is called by its controller
+	 * @param socketOut is the printWriter to be used as a socketOut
+	 * @param aSocket is the Socket to be used as aSocket
+	 * @param stdIn is the BufferedReader to be used as stdIn
+	 * @param socketIn is the BufferedReader to be used as a socketIn
+	 * @param objectIn is the objectInputStream used to read in objects to the frame
+	 * @param student is the student to who the course is being for 
+	 */
 	public RegisterForCourseFrame(PrintWriter socketOut, Socket aSocket, BufferedReader stdIn, BufferedReader socketIn,
 			ObjectInputStream objectIn, Student student)
 	{
@@ -55,6 +64,12 @@ public class RegisterForCourseFrame extends MenuFrame {
 		return courseNum;
 	}
 	
+	/**
+	 * displayFrame() is the method that creates and displays the RegisteForCourseframe for the user, who
+	 * can then input various parameters to determine which course to register for. The action of inputs and
+	 * buttons are controlled/called by a RegisterForCourseController, which is instantiated at the end of
+	 * the method
+	 */
 	@Override
 	public void displayFrame()
 	{

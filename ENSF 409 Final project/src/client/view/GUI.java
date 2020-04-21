@@ -16,6 +16,16 @@ public class GUI {
 	BufferedReader socketIn;
 	private ObjectInputStream objectIn;
 	Student student;
+	
+	/**
+	 * Constructor for the GUI, which takes arguments from class client (Which has 
+	 * communicated with the server and gotten relevant socket information [eg port number])
+	 * @param out is the PrintWriter which will be used as a socketOut
+	 * @param socket is the socket used for "aSocket"
+	 * @param stdIn is the BufferedReader which will be used as stdIn
+	 * @param In is the BufferedReader which will be used as a socketIn
+	 * @param objectIn is the ObjectInputStream which will be used to take in necessary objects
+	 */
 	public GUI(PrintWriter out, Socket socket, BufferedReader stdIn, BufferedReader In, ObjectInputStream objectIn) {
 		
 		this.setSocketOut(out);
@@ -32,6 +42,14 @@ public class GUI {
 		
 	}
 	
+	/**
+	 * runGUI() is called form client and creates the login frame necessary to continue
+	 * using the program, and gather necessary information about the user (Student id). The method also
+	 * creates a MenuFrame instance if the login is successful, where the program will then primarily 
+	 * be conducted from by the user
+	 * @throws ClassNotFoundException relevant exception
+	 * @throws IOException relevant exception
+	 */
 	public void runGUI() throws ClassNotFoundException, IOException {
 		LoginFrame loginPortal = new LoginFrame(getSocketOut(), aSocket, stdIn, socketIn, getObjectIn());
 		loginPortal.displayFrame();

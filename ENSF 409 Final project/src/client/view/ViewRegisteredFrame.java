@@ -24,6 +24,15 @@ public class ViewRegisteredFrame extends GUI{
 	JFrame frame = new JFrame("Vew All Registered Courses");
 	String allcourses = "";
 	
+	/**
+	 * constructor for class ViewRegisteredFrame, which initializes server communication variables from the GUI
+	 * (and calls the super constructor to finalize the Frame)
+	 * @param socketOut is the printWriter to be used as a socketOut
+	 * @param aSocket is the Socket to be used as aSocket
+	 * @param stdIn is the BufferedReader to be used as stdIn
+	 * @param socketIn is the BufferedReader to be used as a socketIn
+	 * @param objectIn is the objectInputStream used to read in objects to the frame
+	 */
 	public ViewRegisteredFrame(PrintWriter socketOut, Socket aSocket, BufferedReader stdIn, BufferedReader socketIn,
 			ObjectInputStream objectIn) {
 		super(socketOut, aSocket, stdIn, socketIn, objectIn);
@@ -31,6 +40,12 @@ public class ViewRegisteredFrame extends GUI{
 
 private JButton backBut = new JButton("Back to menu");
 	
+	/**
+	 * displayFrame() displays all courses that are registered by the user (Student) in a GUI
+	 * interface for the user to browse, and whose button/input actions are controlled by a 
+	 * ViewRegisteredController which is instantiated at the end of the method
+	 * @throws IOException relevant exception
+	 */
 	public void displayFrame() throws IOException {
 		System.out.println("View frame waiting for server input");
 	
@@ -89,6 +104,9 @@ private JButton backBut = new JButton("Back to menu");
 		this.backBut = backBut;
 	}
 
+	/**
+	 * dispose() deletes the frame
+	 */
 	public void dispose() {
 		// TODO Auto-generated method stub
 		frame.dispose();
