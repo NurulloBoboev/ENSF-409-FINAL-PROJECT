@@ -18,11 +18,20 @@ public class MenuFrameController {
 	
 	MenuFrame frame;
 	
+	/**
+	 * constructor for class MenuFrameController
+	 * @param f is the MenuFrame that is controlled by the controller
+	 */
 	public MenuFrameController(MenuFrame f)
 	{
 		this.frame = f;
 	}
 	
+	/**
+	 * runTheController handles all button actions from the MenuFrame, and initiates calls to other methods if the 
+	 * appropriate button is called (eg if "register for course" button is pressed, it creates
+	 * a frame to allow the user to register for a course) 
+	 */
 	public void runController()
 	{
 		frame.getRegisterForCourseBut().addActionListener(new ActionListener(){

@@ -10,6 +10,7 @@ public class DBManager {
 	
 	ArrayList <Course> courseList;
 	ArrayList<Student> studentList; 
+
 	static String sqlUserName;
 	static String sqlPass;
 	static String sqlSchema;
@@ -18,6 +19,7 @@ public class DBManager {
 		DBManager.sqlUserName = sqlUserName;
 		DBManager.sqlPass = sqlPass;
 		DBManager.sqlSchema = sqlSchema;
+
 		
 	}
 
@@ -30,11 +32,9 @@ public class DBManager {
 		
 		
 		try {
-			
-			
-			
-			
+						
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlSchema, sqlUserName, sqlPass);
+
 			Statement statement = connection.createStatement();
 			
 			
@@ -104,7 +104,7 @@ public class DBManager {
 		
 		try {
 		
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlSchema, sqlUserName, sqlPass);
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlSchema, sqlUserName, sqlPass);
 		Statement statement = connection.createStatement();
 		
 		
@@ -162,48 +162,6 @@ public class DBManager {
 	
 	
 	
-	public String getSqlUserName() {
-		return sqlUserName;
-	}
-
-
-
-
-	public void setSqlUserName(String sqlUserName) {
-		this.sqlUserName = sqlUserName;
-	}
-
-
-
-
-	public String getSqlPass() {
-		return sqlPass;
-	}
-
-
-
-
-	public void setSqlPass(String sqlPass) {
-		this.sqlPass = sqlPass;
-	}
-
-
-
-
-	public String getSqlSchema() {
-		return sqlSchema;
-	}
-
-
-
-
-	public void setSqlSchema(String sqlSchema) {
-		this.sqlSchema = sqlSchema;
-	}
-
-
-
-
 	//made static such that a new DBManager object does not need to be constructed each time a 
 	//student wants to update their registration
 	public static void updateStudentRegistration(Student s, Registration r) {
@@ -211,7 +169,9 @@ public class DBManager {
 		String tableName = s.getStudentId() + "registeredcourses";
 		
 		try {
+      
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlSchema, sqlUserName, sqlPass);
+
 			Statement statement = connection.createStatement();
 			java.sql.DatabaseMetaData dbm = connection.getMetaData();
             ResultSet rs = dbm.getTables(null, null, tableName, null);

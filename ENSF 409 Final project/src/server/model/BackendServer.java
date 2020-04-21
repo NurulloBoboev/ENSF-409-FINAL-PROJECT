@@ -27,14 +27,14 @@ public class BackendServer implements Runnable{
 	
 	private Student student; 
 	
-	public BackendServer(Socket aSocket, BufferedReader socketIn, PrintWriter socketOut, ObjectOutputStream objectOut, String sqlUserName, String sqlPass, String sqlSchema) {
+	public BackendServer(Socket aSocket, BufferedReader socketIn, PrintWriter socketOut, ObjectOutputStream objectOut) {
 		this.aSocket = aSocket;
 		this.socketIn = socketIn;
 		this.socketOut = socketOut;
 		this.objectOut = objectOut;
 		
-		catalogue = new CourseCatalogue(sqlUserName, sqlPass, sqlSchema);
-		DBManager db = new DBManager(sqlUserName, sqlPass, sqlSchema);
+		catalogue = new CourseCatalogue();
+		DBManager db = new DBManager();
 		studentList = db.readStudentDataBase(catalogue);
 	}
 	

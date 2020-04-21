@@ -4,13 +4,14 @@ import java.util.ArrayList;
 public class CourseCatalogue {
 	
 	private ArrayList <Course> courseList;
-	public CourseCatalogue (String sqlUserName, String sqlPass, String sqlSchema) {
-		loadFromDataBase (sqlUserName, sqlPass, sqlSchema);
+	
+	public CourseCatalogue () {
+		loadFromDataBase ();
 	}
 	
-	private void loadFromDataBase(String sqlUserName, String sqlPass, String sqlSchema) {
+	private void loadFromDataBase() {
 		// TODO Auto-generated method stub
-		DBManager db = new DBManager(sqlUserName, sqlPass, sqlSchema);
+		DBManager db = new DBManager();
 		setCourseList(db.readFromDataBase());
 		
 		

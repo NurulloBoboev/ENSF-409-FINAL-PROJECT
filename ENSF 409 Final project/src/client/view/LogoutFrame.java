@@ -12,6 +12,10 @@ public class LogoutFrame {
 	
 	private MenuFrame menuFrame;
 	
+	/**
+	 * LogoutFrame consructor
+	 * @param f is the MenuFrame that the LogoutFrame stems from
+	 */
 	public LogoutFrame(MenuFrame f)
 	{
 		this.menuFrame = f;
@@ -21,6 +25,9 @@ public class LogoutFrame {
 	{
 		
 	}
+	/**
+	 * displays the LogoutFrame, which terminated shortly after by a System.exit(1) call from server
+	 */
 	public void display()
 	{
 		JFrame frame = new JFrame ("Logout Successful");

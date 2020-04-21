@@ -12,11 +12,19 @@ public class ServerMessageFrame {
 	private JFrame frame;
 	private JButton okBut = new JButton("OK");
 
+	/**
+	 * Constructor for the server message frame
+	 * @param s is the message to be displayed
+	 */
 	public ServerMessageFrame(String s)
 	{
 		message = s;
 	}
 	
+	/**
+	 * display() displays the message to the screen via JFrame, whos "OK" button is controlled by
+	 * a ServerMessageController
+	 */
 	public void display()
 	{
 		frame = new JFrame("Server Message");
@@ -39,11 +47,6 @@ public class ServerMessageFrame {
 		controller.runController();
 	}
 	
-	public static void main(String [] args)
-	{
-		ServerMessageFrame sm = new ServerMessageFrame("Course added successfully");
-		sm.display();
-	}
 	
 	public String getMessage() {
 		return message;
