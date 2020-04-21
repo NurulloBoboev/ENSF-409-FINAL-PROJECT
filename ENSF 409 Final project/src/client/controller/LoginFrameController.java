@@ -16,10 +16,18 @@ public class LoginFrameController {
 
 	LoginFrame frame;
 	
+	/**
+	 * constructor of LoginFrameController 
+	 * @param frame is the login frame that is to be controlled
+	 */
 	public LoginFrameController(LoginFrame frame) {
 		this.frame = frame;
 	}
 	
+	/**
+	 * runTheController handles all button actions from the login frame, and initiate calls to other 
+	 * methods to continue the program
+	 */
 	public void runController() {
 		frame.getLoginBut().addActionListener(new ActionListener () {
 			@Override

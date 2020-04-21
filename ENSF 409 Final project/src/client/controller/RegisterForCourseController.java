@@ -15,11 +15,19 @@ public class RegisterForCourseController {
 	
 	private RegisterForCourseFrame register;
 	
+	/**
+	 * constructor for class RegisterForCourseController
+	 * @param f is the RegisterForCourseFrame that is to be controlled by the controller
+	 */
 	public RegisterForCourseController(RegisterForCourseFrame f)
 	{
 		this.register = f;
 	}
 	
+	/**
+	 * runTheController handles all button actions from the RegisterForCourseFrame, and initiates calls to other methods if the 
+	 * appropriate button is called (eg if "cancel" button is pressed, it deletes the frame) 
+	 */
 	public void runController()
 	{
 		register.getAddCourseBut().addActionListener(new ActionListener(){
