@@ -47,7 +47,6 @@ public class ViewAllCoursesFrame extends GUI{
 	 * @throws IOException relevant exception
 	 */
 	public void displayFrame() throws IOException {
-		System.out.println("View frame waiting for server input");
 	
 		while(true) {
 			while(socketIn.ready()) 
@@ -56,8 +55,6 @@ public class ViewAllCoursesFrame extends GUI{
 				break;
 		}
 		
-	//	allcourses = socketIn.readLine();
-		System.out.println("Input received: " + allcourses);
 		
 		JLabel label = new JLabel("List of All Courses");
 		

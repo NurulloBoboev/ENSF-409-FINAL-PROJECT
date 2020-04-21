@@ -47,17 +47,13 @@ private JButton backBut = new JButton("Back to menu");
 	 * @throws IOException relevant exception
 	 */
 	public void displayFrame() throws IOException {
-		System.out.println("View frame waiting for server input");
-	
+
 		while(true) {
 			while(socketIn.ready()) 
 				allcourses+="\n"+socketIn.readLine();
 			if(!allcourses.isEmpty())
 				break;
 		}
-		
-	//	allcourses = socketIn.readLine();
-		System.out.println("Input received: " + allcourses);
 		
 		JLabel label = new JLabel("List of All Registered Courses");
 		

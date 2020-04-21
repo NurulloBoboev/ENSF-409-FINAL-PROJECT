@@ -174,7 +174,6 @@ public class DBManager {
 				
 				
 			} catch (Exception e) {
-				//e.printStackTrace();
 			}
 
 	}
@@ -213,7 +212,6 @@ public class DBManager {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 		}
 		
 		

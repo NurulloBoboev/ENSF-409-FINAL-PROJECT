@@ -131,9 +131,5 @@ public class LoginFrame extends GUI {
 		this.tf = tf;
 	}
 	
-	//Uncomment to test LoginFrame on its own.
-//	public static void main(String [] args) {
-//		
-//		LoginFrame f = new LoginFrame();
-//	}
+
 }

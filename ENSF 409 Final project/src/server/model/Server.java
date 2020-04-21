@@ -82,7 +82,7 @@ public class Server {
 	}
 
 	/**
-	 * getSQLInformation retreives SQL information such username, password and schema
+	 * getSQLInformation retrieves SQL database parameters such as the username, password and schema
 	 */
 	public void getSQLInformation(){
 		Scanner sc = new Scanner(System.in);		

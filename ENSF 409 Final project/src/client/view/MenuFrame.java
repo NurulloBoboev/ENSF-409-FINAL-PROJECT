@@ -104,7 +104,6 @@ public class MenuFrame extends GUI{
 		
 		frame.add("Center", welcomeMessage);
 		
-		//frame.add("North", new JLabel("	Welcome "+student.getStudentName()+"! ID: "+student.getStudentId(), SwingConstants.CENTER));
 		
 		JPanel buttons = new JPanel(new FlowLayout());
 		
@@ -122,13 +121,6 @@ public class MenuFrame extends GUI{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	/*public static void main (String [] args)
-	{
-		MenuFrame mf = new MenuFrame();
-		mf.displayFrame();
-		
-
-	}*/
 
 	
 }

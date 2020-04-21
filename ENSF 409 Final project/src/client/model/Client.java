@@ -56,7 +56,6 @@ public class Client {
 	public void communicateServer() throws ClassNotFoundException, IOException {
 		
 		// Do socket work here to connect to the server and send info back and forth.
-		System.out.println("Communicate server got called");
 		GUI GUI = new GUI(socketOut, aSocket, stdIn, socketIn, objectIn);
 		System.out.println("new GUI instance succesfully created");
 		GUI.runGUI();

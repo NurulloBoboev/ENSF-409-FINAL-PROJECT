@@ -80,22 +80,18 @@ public class BackendServer implements Runnable{
         }
 		
 		do {
-			System.out.println("Switch statement is activated");
 			int input = Integer.parseInt(socketIn.readLine());
-			System.out.println("Client request received. Client sent: " + input);
 			//different outputs depending on what the client sends back as an int from the gui commands? 
 			switch(input) {
 			
 			//display all courses on catalogue
 				case 1:
-					System.out.println("Case 1 has been reached");
 					String allCoursesString = allCourses();
 					socketOut.println(allCoursesString);
 					socketOut.flush();
 					break;				
 			//view all taken courses 		
 				case 2: 
-					socketOut.println(viewAllTakenCourses());
 					break;				
 			//view registered courses
 				case 3: 
@@ -130,7 +126,6 @@ public class BackendServer implements Runnable{
 							socketOut.flush();
 						}
 						else if(truth == 0) {
-							System.out.println(student.getPreRegList().size());
 							socketOut.println("fail");
 							socketOut.flush();
 						}
@@ -159,9 +154,7 @@ public class BackendServer implements Runnable{
 		
 		student = null;
 		
-		for(Student s : studentList) {
-			
-			System.out.println("Student name: " + s.getStudentName());
+		for(Student s : studentList) {		
 			
 			if(s.getStudentId() == id)
 				student = s;
@@ -205,22 +198,13 @@ public class BackendServer implements Runnable{
 		
 	}
 	
-	/**
-	 * returns the students courses that they have taken
-	 * @return students course they have taken in string form
-	 */
-	public String viewAllTakenCourses() {
-		
-		return "empty for now - to be updated once we have a working database!";
-		
-	}
 	
 	public Student getStudent() {
 		return student;
 	}
 	
 	/**
-	 * runs/calls communicateWithClient()
+	 * calls the communicateWithClient() method
 	 */
 	@Override
 	public void run() {

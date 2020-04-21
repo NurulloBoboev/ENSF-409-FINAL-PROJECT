@@ -56,7 +56,6 @@ public class LoginFrameController {
 									+ "Please enter a different ID");
 						}
 						else {
-							System.out.println(frame.getStudent().getStudentName());
 							frame.setTf(false);
 							frame.dispose();
 						}

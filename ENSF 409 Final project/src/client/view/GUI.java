@@ -56,7 +56,6 @@ public class GUI {
 		
 		while(true) {
 			if(loginPortal.getStatus()==false) {
-				System.out.println("We out here");
 				break;
 			}
 			System.out.print("");
@@ -64,7 +63,6 @@ public class GUI {
 		
 		
 		student = loginPortal.getStudent();
-		System.out.println("Name is: " + student.getStudentName());
 		MenuFrame menu = new MenuFrame(getSocketOut(), aSocket, stdIn, socketIn, getObjectIn(), student);
 		menu.displayFrame();
 		if(aSocket.isClosed())

@@ -27,14 +27,13 @@ public class Registration implements Serializable{
 	}
 	
 	/**
-	 * addRegistration adds the registration request to the student's registartion list and
+	 * addRegistration adds the registration request to the student's registration list and
 	 * the Course offerings registration list
 	 * @return an integer determining whether or not the registration was completed correctly
 	 */
 	private int addRegistration () {
 		int b = theStudent.addRegistration(this);;
 		theOffering.addRegistration(this);
-		System.out.println("the value of b: " + b);
 		return b;
 	}
 	
