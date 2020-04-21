@@ -5,13 +5,13 @@ public class CourseCatalogue {
 	
 	private ArrayList <Course> courseList;
 	
-	public CourseCatalogue () {
-		loadFromDataBase ();
+	public CourseCatalogue (String sqlUserName, String sqlPass, String sqlSchema) {
+		loadFromDataBase (sqlUserName, sqlPass, sqlSchema);
 	}
 	
-	private void loadFromDataBase() {
+	private void loadFromDataBase(String sqlUserName, String sqlPass, String sqlSchema) {
 		// TODO Auto-generated method stub
-		DBManager db = new DBManager();
+		DBManager db = new DBManager(sqlUserName,  sqlPass,  sqlSchema);
 		setCourseList(db.readFromDataBase());
 		
 		
@@ -52,6 +52,7 @@ public class CourseCatalogue {
 		System.err.println("Course was not found!");
 		
 	}
+	
 	public ArrayList <Course> getCourseList() {
 		return courseList;
 	}

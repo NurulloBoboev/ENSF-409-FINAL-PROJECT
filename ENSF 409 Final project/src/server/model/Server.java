@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,6 +29,10 @@ public class Server {
 	private BufferedReader socketIn; 
 	private PrintWriter socketOut;
 	private ObjectOutputStream objectOut;
+	
+	private String sqlUserName;
+	private String sqlPass;
+	private String sqlSchema;
 	
 	BackendServer theBackend;
 	
@@ -54,7 +59,7 @@ public class Server {
 			socketOut = new PrintWriter(aSocket.getOutputStream());
 			objectOut = new ObjectOutputStream(aSocket.getOutputStream());
 			
-			BackendServer backend = new BackendServer(aSocket, socketIn, socketOut, objectOut);
+			BackendServer backend = new BackendServer(aSocket, socketIn, socketOut, objectOut, sqlUserName, sqlPass, sqlSchema);
 			pool.execute(backend);
 			
 			}
