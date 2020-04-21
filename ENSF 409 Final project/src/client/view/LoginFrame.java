@@ -21,11 +21,23 @@ public class LoginFrame extends GUI {
 	
 	JFrame frame;
 	private boolean tf = true;
+	private JButton loginBut = new JButton("Login");
+	private JButton cancelBut = new JButton("Cancel");
+	private JTextField userID = new JTextField("Student ID");
 	
 	public LoginFrame() {
 		displayFrame();
 	}
 	
+	/**
+	 * constructor for class LoginFrame, which initializes server communication variables from the GUI
+	 * (and calls the super constructor to finalize the LoginFrame)
+	 * @param socketOut is the printWriter to be used as a socketOut
+	 * @param aSocket is the Socket to be used as aSocket
+	 * @param stdIn is the BufferedReader to be used as stdIn
+	 * @param socketIn is the BufferedReader to be used as a socketIn
+	 * @param objectIn is the objectInputStream used to read in objects to the frame
+	 */
 	public LoginFrame(PrintWriter socketOut, Socket aSocket, BufferedReader stdIn, BufferedReader socketIn,
 			ObjectInputStream objectIn) {
 		super(socketOut, aSocket, stdIn, socketIn, objectIn);
@@ -33,19 +45,11 @@ public class LoginFrame extends GUI {
 		// TODO Auto-generated constructor stub
 	}
 	
-	private JButton loginBut = new JButton("Login");
-	private JButton cancelBut = new JButton("Cancel");
-	private JTextField userID = new JTextField("Student ID");
 
-	
-	public JTextField getUserID() {
-		return userID;
-	}
-
-	public void setUserID(JTextField userID) {
-		this.userID = userID;
-	}
-
+	/**
+	 * displayFrame() is the method that creates and displays the login frame that is used to take
+	 * user input (Student ID), and has buttons whose actions are managed by a LoginFrameController
+	 */
 	public void displayFrame() {
 		
 		frame = new JFrame("Login Portal");
@@ -78,6 +82,14 @@ public class LoginFrame extends GUI {
 		controller.runController();
 		
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public JTextField getUserID() {
+		return userID;
+	}
+
+	public void setUserID(JTextField userID) {
+		this.userID = userID;
 	}
 
 	public JButton getLoginBut() {

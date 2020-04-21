@@ -18,8 +18,22 @@ import server.controller.Student;
 public class MenuFrame extends GUI{
 	
 	JFrame frame;
+	private JButton registerForCourseBut = new JButton("Register for a new course");
+	private JButton viewAllCoursesBut = new JButton("View all Courses");
+	private JButton viewRegisteredCoursesBut  = new JButton ("View Registered Courses");
+	private JButton logoutBut = new JButton ("Logout");
 	
-	
+	/**
+	 * Constructor for class MenuFrame, which initializes server communication variables from the GUI
+	 * (and calls the super constructor to finalize the MenuFrame, with the exception of "student")
+	 * @param socketOut is the printWriter to be used as a socketOut
+	 * @param aSocket is the Socket to be used as aSocket
+	 * @param stdIn is the BufferedReader to be used as stdIn
+	 * @param socketIn is the BufferedReader to be used as a socketIn
+	 * @param objectIn is the objectInputStream used to read in objects to the frame
+	 * @param student is the student to which menu methods are being executed for (eg, a "register
+	 * for course" call under a specific student
+	 */
 	public MenuFrame(PrintWriter socketOut, Socket aSocket, BufferedReader stdIn, BufferedReader socketIn,
 			ObjectInputStream objectIn, Student student) 
 	{
@@ -32,7 +46,6 @@ public class MenuFrame extends GUI{
 		
 	}
 	
-	private JButton registerForCourseBut = new JButton("Register for a new course");
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -73,10 +86,11 @@ public class MenuFrame extends GUI{
 		this.logoutBut = logoutBut;
 	}
 
-	private JButton viewAllCoursesBut = new JButton("View all Courses");
-	private JButton viewRegisteredCoursesBut  = new JButton ("View Registered Courses");
-	private JButton logoutBut = new JButton ("Logout");
-	
+	/**
+	 * displayFrame() is the method that creates and displays the menu frame for the user, who
+	 * can then dictate what actions to take via numerous buttons. The action of these buttons are
+	 * controlled by a MenuFrameController, which is instantiated at the end of the method
+	 */
 	public void displayFrame()
 	{
 		frame = new JFrame ("Student Menu");
