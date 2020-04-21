@@ -49,9 +49,12 @@ public class ViewAllCoursesFrame extends GUI{
 	public void displayFrame() throws IOException {
 		System.out.println("View frame waiting for server input");
 	
-		while(socketIn.ready()) 
-			allcourses+="\n"+socketIn.readLine();
-		
+		while(true) {
+			while(socketIn.ready()) 
+				allcourses+="\n"+socketIn.readLine();
+			if(!allcourses.isEmpty())
+				break;
+		}
 		
 	//	allcourses = socketIn.readLine();
 		System.out.println("Input received: " + allcourses);
