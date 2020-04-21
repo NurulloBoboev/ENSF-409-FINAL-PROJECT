@@ -19,7 +19,11 @@ public class Student implements Serializable {
 	private ArrayList<Registration> studentRegList;
 	private ArrayList<Course> preReqs;
 	
-	
+	/**
+	 * Basic Student constructor
+	 * @param studentName is the name of the student
+	 * @param studentId is the ID of the student
+	 */
 	public Student (String studentName, int studentId) {
 		this.setStudentName(studentName);
 		this.setStudentId(studentId);
@@ -27,7 +31,13 @@ public class Student implements Serializable {
 	}
 
 	
-	
+	/**
+	 * Intensive Student constructor
+	 * @param studentName is the name of the student
+	 * @param studentId is the ID of the student
+	 * @param preReqKey is the preReqKey of the student
+	 * @param registeredCoursesKey is the registeredCoursesKey of the student
+	 */
 	public Student (String studentName, int studentId, int preReqKey, int registeredCoursesKey ) {
 		this.setStudentName(studentName);
 		this.setStudentId(studentId);
@@ -54,6 +64,9 @@ public class Student implements Serializable {
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
+	/**
+	 * student toString method
+	 */
 	@Override
 	public String toString () {
 		String st = "Student Name: " + getStudentName() + "\n" +
@@ -61,6 +74,12 @@ public class Student implements Serializable {
 		return st;
 	}
 
+	/**
+	 * addRegistration adds a registration to the studentRegList, and checks to make sure that 
+	 * all prerequisites are met and that there is enough capacity
+	 * @param registration to be added to the student
+	 * @return an integer determining whether or not the registration was completed
+	 */
 	public int addRegistration(Registration registration) {
 		
 		boolean preReqMet = false;
@@ -93,6 +112,10 @@ public class Student implements Serializable {
 	}
 
 	//ONLY FOR ADDING FROM THE DATABASE
+	/**
+	 * updateRegistratio updates the studentRegList with a registration from the database
+	 * @param registration is the registration to be added
+	 */
 	public void updateRegistration(Registration registration) {
 		studentRegList.add(registration);	
 		registration.getTheOffering().setSecCap(registration.getTheOffering().getSecCap() -1);
@@ -119,7 +142,11 @@ public class Student implements Serializable {
 		
 	}
 	
-	
+	/**
+	 * notInCourseYet verifies whether or not the student is enrolled for a particular course
+	 * @param reg is the registration to be referenced
+	 * @return whether or not the student is enrolled in a course
+	 */
 	public boolean notInCourseYet(Registration reg) {
 
         String regName = reg.getTheOffering().getTheCourse().getCourseName() + reg.getTheOffering().getTheCourse().getCourseNum();

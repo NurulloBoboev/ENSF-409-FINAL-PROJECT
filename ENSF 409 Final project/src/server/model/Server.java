@@ -32,6 +32,10 @@ public class Server {
 	BackendServer theBackend;
 	
 	
+	/**
+	 * Server constructor
+	 * @param portNum port number of the Server Socket to be used
+	 */
 	public Server(int portNum) 
 	{		
 		try {
@@ -43,6 +47,12 @@ public class Server {
 		}	
 	}
 	
+	/**
+	 * communicateWithClient() communicates with client on the front end (establishes a connection to the client)
+	 * and creates a backend instance that allows the client to complete actions via the backend server(eg to
+	 * Register for a new course) 
+	 * @throws IOException relevant exception
+	 */
 	public void communicateWithClient() throws IOException
 	{
 		try 
@@ -67,6 +77,10 @@ public class Server {
 		}
 	}
 
+	/**
+	 * main function where server is run from
+	 * @param args not used
+	 */
 	public static void main(String[] args) 
 	{
 		Server server = new Server(1000);

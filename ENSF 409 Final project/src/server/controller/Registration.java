@@ -14,12 +14,23 @@ public class Registration implements Serializable{
 	private Student theStudent;
 	private CourseOffering theOffering;
 	
+	/**
+	 *completeRegistration completes a registration request from a student
+	 * @param st is the student to which the registration is going to
+	 * @param of is the course offering requested by the student
+	 * @return an integer determining whether the registration was completed
+	 */
 	public int completeRegistration (Student st, CourseOffering of) {
 		theStudent = st;
 		theOffering = of;
 	    return addRegistration();
 	}
 	
+	/**
+	 * addRegistration adds the registration request to the student's registartion list and
+	 * the Course offerings registration list
+	 * @return an integer determining whether or not the registration was completed correctly
+	 */
 	private int addRegistration () {
 		int b = theStudent.addRegistration(this);;
 		theOffering.addRegistration(this);
@@ -41,6 +52,9 @@ public class Registration implements Serializable{
 		this.theOffering = theOffering;
 	}
 	
+	/**
+	 * toString method that converts the registration to a string
+	 */
 	@Override
 	public String toString () {
 		String st = "\n";

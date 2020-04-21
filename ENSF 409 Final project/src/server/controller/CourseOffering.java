@@ -15,6 +15,11 @@ public class CourseOffering implements Serializable{
 	//private ArrayList<Student> studentList;
 	private ArrayList <Registration> offeringRegList;
 	
+	/**
+	 * Constructor for a new CourseOffering
+	 * @param secNum section/offering number
+	 * @param secCap section/offering capacity
+	 */
 	public CourseOffering (int secNum, int secCap) {
 		this.setSecNum(secNum);
 		this.setSecCap(secCap);
@@ -38,6 +43,9 @@ public class CourseOffering implements Serializable{
 	public void setTheCourse(Course theCourse) {
 		this.theCourse = theCourse;
 	}
+	/**
+	 * converts the CourseOffering to a string
+	 */
 	@Override
 	public String toString () {
 		String st = "\n";
@@ -46,6 +54,10 @@ public class CourseOffering implements Serializable{
 		//We also want to print the names of all students in the section
 		return st;
 	}
+	/**
+	 *addRegistration adds a students registration to the courseOffering
+	 * @param registration is the registration to be added
+	 */
 	public void addRegistration(Registration registration) {
 		// TODO Auto-generated method stub
 		offeringRegList.add(registration);

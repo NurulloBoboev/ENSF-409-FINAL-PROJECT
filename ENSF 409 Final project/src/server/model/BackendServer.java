@@ -27,6 +27,14 @@ public class BackendServer implements Runnable{
 	
 	private Student student; 
 	
+	/**
+	 * Constructor for BackenServer, initializes socket/stream information from the server,
+	 * and creates new course/student database initializers
+	 * @param aSocket Socket to be initialized as aSocket
+	 * @param socketIn BufferedReader to be initialized as socketIn
+	 * @param socketOut PrintWriter to be initialized as socketOut
+	 * @param objectOut ObjectOutputStream to be initialized as objectOut
+	 */
 	public BackendServer(Socket aSocket, BufferedReader socketIn, PrintWriter socketOut, ObjectOutputStream objectOut) {
 		this.aSocket = aSocket;
 		this.socketIn = socketIn;
@@ -38,6 +46,12 @@ public class BackendServer implements Runnable{
 		studentList = db.readStudentDataBase(catalogue);
 	}
 	
+	/**
+	 * communicatewithClient communicates between the Server controller and client, processing
+	 * client requests to the server controller via a switch
+	 * @throws NumberFormatException relevant exception
+	 * @throws IOException relevant exception
+	 */
 	public void communicateWithClient() throws NumberFormatException, IOException{
 		//first use of the Server - get an int from the client and then find and establish a student object. 
 		while(true) {
@@ -134,6 +148,10 @@ public class BackendServer implements Runnable{
 	}
 	//login
 	
+	/**
+	 * verifies login information from Login on the client side
+	 * @param id is the login identification
+	 */
 	public void login(int id) {
 		
 		student = null;
@@ -149,6 +167,10 @@ public class BackendServer implements Runnable{
 		
 	//views course
 	
+	/**
+	 * returns the catalogue in String form (View Courses)
+	 * @return catalogue in String form
+	 */
 	public String allCourses() {
 		
 		return catalogue.toString();
@@ -156,7 +178,12 @@ public class BackendServer implements Runnable{
 	}
 		
 	//register courses 
-	
+	/**
+	 * registers a student for a course(Register Student For Course)
+	 * @param c is the course to be Registered
+	 * @param offering is the offering to be registered in 
+	 * @return whether the student was correctly registered or not
+	 */
 	public int registerCourse(Course c, int offering) {
 		CourseOffering theOffering  = c.getCourseOffering(offering);
 		Registration r = new Registration();
@@ -164,13 +191,20 @@ public class BackendServer implements Runnable{
 	}
 	
 	//view Registered courses
-	
+	/**
+	 * returns the students registered courses in String form (View Registered Courses)
+	 * @return the students registered courses in String form
+	 */
 	public String viewRegCourses() {
 		
 		return student.viewRegisterdCourses();
 		
 	}
 		
+	/**
+	 * returns the students courses that they have taken
+	 * @return students course they have taken in string form
+	 */
 	public String viewAllTakenCourses() {
 		
 		return "empty for now - to be updated once we have a working database!";
@@ -182,6 +216,9 @@ public class BackendServer implements Runnable{
 	}
 	
 	
+	/**
+	 * runs/calls communicateWithClient()
+	 */
 	@Override
 	public void run() {
 		try {
