@@ -10,14 +10,14 @@ public class DBManager {
 	
 	ArrayList <Course> courseList;
 	ArrayList<Student> studentList; 
-	String sqlUserName;
-	String sqlPass;
-	String sqlSchema;
+	static String sqlUserName;
+	static String sqlPass;
+	static String sqlSchema;
 
 	public DBManager (String sqlUserName, String sqlPass, String sqlSchema) {
-		this.sqlUserName = sqlUserName;
-		this.sqlPass = sqlPass;
-		this.sqlSchema = sqlSchema;
+		DBManager.sqlUserName = sqlUserName;
+		DBManager.sqlPass = sqlPass;
+		DBManager.sqlSchema = sqlSchema;
 		
 	}
 
@@ -208,7 +208,7 @@ public class DBManager {
 		String tableName = s.getStudentId() + "registeredcourses";
 		
 		try {
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + getSqlSchema(), sqlUserName, sqlPass);
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlSchema, sqlUserName, sqlPass);
 			Statement statement = connection.createStatement();
 			java.sql.DatabaseMetaData dbm = connection.getMetaData();
             ResultSet rs = dbm.getTables(null, null, tableName, null);
