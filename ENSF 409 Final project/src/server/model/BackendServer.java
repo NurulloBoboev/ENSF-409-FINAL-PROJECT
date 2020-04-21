@@ -35,6 +35,9 @@ public class BackendServer implements Runnable{
 	 * @param socketIn BufferedReader to be initialized as socketIn
 	 * @param socketOut PrintWriter to be initialized as socketOut
 	 * @param objectOut ObjectOutputStream to be initialized as objectOut
+	 * @param sqlUserName SQL username to be used
+	 * @param sqlPass SQL Password to be used
+	 * @param sqlSchema SQL Schema to be used
 	 */	
 	public BackendServer(Socket aSocket, BufferedReader socketIn, PrintWriter socketOut, ObjectOutputStream objectOut, String sqlUserName, String sqlPass, String sqlSchema) {
 		this.aSocket = aSocket;
