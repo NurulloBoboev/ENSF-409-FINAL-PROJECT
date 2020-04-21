@@ -36,7 +36,10 @@ public class Server {
 	
 	BackendServer theBackend;
 	
-	
+	/**
+	 * Server constructor
+	 * @param portNum port number of the Server Socket to be used
+	 */
 	public Server(int portNum) 
 	{		
 		try {
@@ -48,6 +51,12 @@ public class Server {
 		}	
 	}
 	
+	/**
+	 * communicateWithClient() communicates with client on the front end (establishes a connection to the client)
+	 * and creates a backend instance that allows the client to complete actions via the backend server(eg to
+	 * Register for a new course) 
+	 * @throws IOException relevant exception
+	 */
 	public void communicateWithClient() throws IOException
 	{
 		try 
@@ -72,6 +81,9 @@ public class Server {
 		}
 	}
 
+	/**
+	 * getSQLInformation retreives SQL information such username, password and schema
+	 */
 	public void getSQLInformation(){
 		Scanner sc = new Scanner(System.in);		
 		
@@ -89,6 +101,10 @@ public class Server {
 		
 	}
 	
+	/**
+	 * main function that runs server
+	 * @param args not used
+	 */
 	public static void main(String[] args) 
 	{
 		

@@ -15,6 +15,12 @@ public class DBManager {
 	static String sqlPass;
 	static String sqlSchema;
 
+	/**
+	 * Constructor for DBManager with SQL credentials
+	 * @param sqlUserName SQL Username
+	 * @param sqlPass SQL Password
+	 * @param sqlSchema SQL Schema
+	 */
 	public DBManager (String sqlUserName, String sqlPass, String sqlSchema) {
 		DBManager.sqlUserName = sqlUserName;
 		DBManager.sqlPass = sqlPass;
@@ -27,6 +33,12 @@ public class DBManager {
 	
 	
 	///
+	/**
+	 * readStudentDataBase reads the list of student from the SQL database, and returns a list of 
+	 * students in the database
+	 * @param theCatalogue is the catalogue to which the lists are to be added
+	 * @return the list of students from the database
+	 */
 	public ArrayList<Student> readStudentDataBase(CourseCatalogue theCatalogue) {
 		studentList = new ArrayList<Student>();
 		
@@ -97,7 +109,10 @@ public class DBManager {
 	// SEARCH FOR THEM AND ASSIGN THE OBJECT WHICH HAS ALREADY BEEN CONSTRUCTED
 	
 	
-	
+	/**
+	 * readFromDataBase reads the list of courses from the SQL Database
+	 * @return the list of courses
+	 */
 	public ArrayList readFromDataBase() {
 		
 		courseList = new ArrayList<Course>();
@@ -131,6 +146,10 @@ public class DBManager {
 	}
 	
 	
+	/**
+	 * updateCourseOfferings traverses through the course list and creates course offerings for each course
+	 * from the course offering database
+	 */
 	public void updateCourseOfferings() {
 		
 		
@@ -164,6 +183,11 @@ public class DBManager {
 	
 	//made static such that a new DBManager object does not need to be constructed each time a 
 	//student wants to update their registration
+	/**
+	 * updateStudentRegistration updates the database of student registrations
+	 * @param s is the student to be updated
+	 * @param r is the registration to be added
+	 */
 	public static void updateStudentRegistration(Student s, Registration r) {
 		
 		String tableName = s.getStudentId() + "registeredcourses";
@@ -197,7 +221,10 @@ public class DBManager {
 	
 	//made static such that a new DBManager object does not need to be constructed each time a 
 	//student wants to view registration data
-	
+	/**
+	 * setStudentRegisterdCourses updates the students registered courses
+	 * @param theCatalogue is the course catalogue where the registrations can be offered from
+	 */
 	public void setStudentRegisterdCourses(CourseCatalogue theCatalogue) {
 		String tableString = "";
 		

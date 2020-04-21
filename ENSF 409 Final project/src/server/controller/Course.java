@@ -18,6 +18,11 @@ public class Course implements Serializable{
 	String preReqName;
 	int preReqNum;
 
+	/**
+	 * Base Constructor for class course
+	 * @param courseName is the name of the course to be created
+	 * @param courseNum is the number of the course to be created
+	 */
 	public Course(String courseName, int courseNum) {
 		this.setCourseName(courseName);
 		this.setCourseNum(courseNum);
@@ -26,7 +31,13 @@ public class Course implements Serializable{
 	}
 
 	
-	
+	/**
+	 * In depth constructor for class course, initializing various necessary parameters
+	 * @param courseName name of the course to be created
+	 * @param courseNum number of the course to be created
+	 * @param preReqName name of the necessary Pre-Requisite course
+	 * @param preReqNum number of the necessary Pre-Requisite course
+	 */
 	public Course(String courseName, int courseNum, String preReqName, int preReqNum) {
 		
 		this.setCourseName(courseName);
@@ -40,7 +51,10 @@ public class Course implements Serializable{
 	}
 	
 	
-	
+	/**
+	 * addOffering adds a particular course offering to the course
+	 * @param offering is the offering to be added
+	 */
 	public void addOffering(CourseOffering offering) {
 		if (offering != null && offering.getTheCourse() == null) {
 			offering.setTheCourse(this);
@@ -69,6 +83,12 @@ public class Course implements Serializable{
 	public void setCourseNum(int courseNum) {
 		this.courseNum = courseNum;
 	}
+	
+	/**
+	 * toString method that converts the course information and its offerings
+	 * to a string
+	 * 
+	 */
 	@Override
 	public String toString () {
 		String st = "\n";
@@ -95,6 +115,11 @@ public class Course implements Serializable{
 		this.preReq = preReq;
 	}
 
+	/**
+	 * getCourseOffering returns the offering at a specified location in the list(offering/section number)
+	 * @param i is the location in the list to return (offering/section number to search for)
+	 * @return the course offering with the specific course offering
+	 */
 	public CourseOffering getCourseOffering(int i) {
 
         for(CourseOffering o: offeringList) {
