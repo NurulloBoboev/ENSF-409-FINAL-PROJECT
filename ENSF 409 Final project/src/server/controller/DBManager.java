@@ -31,6 +31,9 @@ public class DBManager {
 		
 		try {
 			
+			
+			
+			
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlSchema, sqlUserName, sqlPass);
 			Statement statement = connection.createStatement();
 			

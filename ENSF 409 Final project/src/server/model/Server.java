@@ -72,18 +72,18 @@ public class Server {
 		}
 	}
 
-	public static void getSQLInformation(){
+	public void getSQLInformation(){
 		Scanner sc = new Scanner(System.in);		
 		
 		System.out.println("What is your sql username?");		
-		String sqlUserName = sc.nextLine();
+		sqlUserName = sc.nextLine();
 		
 		
 		System.out.println("What is your sql password?");		
-		String sqlPass = sc.nextLine();
+		sqlPass = sc.nextLine();
 		
 		System.out.println("What is your sql schema name?");
-		String sqlSchema = sc.nextLine();
+		sqlSchema = sc.nextLine();
 		
 		sc.close();
 		
@@ -91,9 +91,12 @@ public class Server {
 	
 	public static void main(String[] args) 
 	{
-		getSQLInformation();
+		
 		
 		Server server = new Server(1000);
+		server.getSQLInformation();
+		
+		
 		System.out.println("Server is now running!");
 		try 
 		{
